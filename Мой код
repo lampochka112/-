@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фёдор Достоевский - Мир великого писателя</title>
+    <title>Фёдор Достоевский - Гений русской литературы</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Old+Standard+TT:wght@400;700&family=Playfair+Display:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
@@ -20,6 +20,7 @@
             --ink-gray: #5d4037;
             --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --old-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --glow: 0 0 20px rgba(139, 69, 19, 0.3);
         }
         
         * {
@@ -39,7 +40,7 @@
             position: relative;
         }
         
-        /* Эффект старинной бумаги */
+        /* Улучшенный эффект старинной бумаги */
         .paper-texture {
             position: fixed;
             top: 0;
@@ -47,13 +48,16 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 25%),
-                radial-gradient(circle at 90% 80%, rgba(101, 67, 33, 0.1) 0%, transparent 25%);
+                radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(101, 67, 33, 0.15) 0%, transparent 25%),
+                linear-gradient(to right, transparent 98%, rgba(139, 69, 19, 0.1) 100%),
+                linear-gradient(to bottom, transparent 98%, rgba(139, 69, 19, 0.1) 100%);
+            background-size: 100% 100%, 100% 100%, 30px 100%, 100% 30px;
             pointer-events: none;
             z-index: -1;
         }
         
-        /* Анимированные чернильные кляксы */
+        /* Улучшенные чернильные кляксы */
         .ink-blots {
             position: fixed;
             width: 100%;
@@ -66,40 +70,59 @@
             position: absolute;
             background: var(--primary-color);
             border-radius: 50%;
-            opacity: 0.05;
-            filter: blur(30px);
+            opacity: 0.08;
+            filter: blur(40px);
         }
         
         .blot-1 {
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
             top: 10%;
             left: 5%;
-            animation: floatInk 25s infinite ease-in-out;
+            animation: floatInk 30s infinite ease-in-out;
+            background: radial-gradient(circle, var(--primary-color), transparent 70%);
         }
         
         .blot-2 {
-            width: 400px;
-            height: 400px;
+            width: 350px;
+            height: 350px;
             bottom: 15%;
             right: 10%;
-            animation: floatInk 30s infinite ease-in-out reverse;
+            animation: floatInk 35s infinite ease-in-out reverse;
+            background: radial-gradient(circle, var(--accent-1), transparent 70%);
         }
         
         .blot-3 {
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             top: 40%;
             right: 20%;
-            animation: floatInk 20s infinite ease-in-out;
+            animation: floatInk 25s infinite ease-in-out;
+            background: radial-gradient(circle, var(--accent-3), transparent 70%);
+        }
+        
+        .blot-4 {
+            width: 250px;
+            height: 250px;
+            bottom: 30%;
+            left: 15%;
+            animation: floatInk 40s infinite ease-in-out;
+            background: radial-gradient(circle, var(--secondary-color), transparent 70%);
         }
         
         @keyframes floatInk {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1); 
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg) scale(1.1); 
+            }
+            66% { 
+                transform: translateY(20px) rotate(240deg) scale(0.9); 
+            }
         }
         
-        /* Летящие буквы и слова */
+        /* Улучшенные летящие буквы */
         .floating-letters {
             position: fixed;
             width: 100%;
@@ -111,18 +134,55 @@
         .floating-letter {
             position: absolute;
             font-family: 'Old Standard TT', serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary-color);
-            opacity: 0.1;
-            animation: floatLetter 20s linear infinite;
+            opacity: 0.15;
+            animation: floatLetter 25s linear infinite;
+            text-shadow: 0 0 10px rgba(139, 69, 19, 0.3);
+            font-weight: bold;
         }
         
         @keyframes floatLetter {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(110vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
             }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-100px) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* Парящие обложки книг */
+        .floating-books {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-book {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--accent-3);
+            opacity: 0.1;
+            animation: floatBook 40s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(184, 134, 11, 0.3));
+        }
+        
+        @keyframes floatBook {
+            0% {
+                transform: translateY(100vh) translateX(-100px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
             }
         }
         
@@ -132,7 +192,7 @@
             padding: 0 30px;
         }
         
-        /* Навигация в стиле старой книги */
+        /* Улучшенная навигация */
         .navbar {
             position: fixed;
             top: 0;
@@ -140,15 +200,17 @@
             width: 100%;
             padding: 20px 0;
             z-index: 1000;
-            background: rgba(26, 15, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(139, 69, 19, 0.3);
+            background: rgba(26, 15, 10, 0.98);
+            backdrop-filter: blur(15px) saturate(180%);
+            border-bottom: 2px solid rgba(139, 69, 19, 0.4);
             transition: var(--transition);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
         }
         
         .navbar.scrolled {
             padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(26, 15, 10, 0.95);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
         
         .nav-container {
@@ -162,23 +224,37 @@
         
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--paper-bg);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            color: var(--accent-3);
+            transform: translateY(-2px);
         }
         
         .logo i {
             color: var(--accent-3);
+            font-size: 2.2rem;
+            transition: var(--transition);
+        }
+        
+        .logo:hover i {
+            transform: rotate(15deg);
         }
         
         .nav-links {
             display: flex;
             gap: 40px;
+            align-items: center;
         }
         
         .nav-link {
@@ -190,27 +266,83 @@
             padding: 10px 0;
             transition: var(--transition);
             font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
         }
         
-        .nav-link::after {
+        .nav-link::before {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-3);
-            transition: width 0.3s;
+            background: linear-gradient(90deg, var(--accent-3), var(--primary-color));
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 1px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
         }
         
         .nav-link:hover::after,
         .nav-link.active::after {
-            width: 100%;
+            opacity: 1;
         }
         
         .nav-link:hover,
         .nav-link.active {
             color: var(--accent-3);
+            text-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-2));
+            border: none;
+            color: var(--paper-bg);
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+        
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.5);
         }
         
         .mobile-menu-btn {
@@ -220,11 +352,24 @@
             color: var(--accent-3);
             font-size: 1.8rem;
             cursor: pointer;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 69, 19, 0.2);
         }
         
-        /* Заголовок с портретом */
+        .mobile-menu-btn:hover {
+            background: rgba(139, 69, 19, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        /* Улучшенный заголовок с портретом */
         header {
-            padding: 180px 0 100px;
+            padding: 200px 0 120px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -233,79 +378,203 @@
         .header-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
         .portrait-frame {
-            width: 200px;
-            height: 250px;
-            margin: 0 auto 40px;
-            border: 8px solid var(--primary-color);
-            border-radius: 5px;
+            width: 280px;
+            height: 350px;
+            margin: 0 auto 50px;
+            border: 15px solid transparent;
+            border-image: linear-gradient(45deg, var(--primary-color), var(--accent-3), var(--accent-2)) 1;
+            border-radius: 8px;
             overflow: hidden;
             position: relative;
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                inset 0 0 20px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 0 30px rgba(0, 0, 0, 0.6),
+                var(--glow);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .portrait-frame:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 35px 70px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(139, 69, 19, 0.5);
         }
         
         .portrait {
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, #2c1810, #5d4037);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portrait-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .portrait-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(26, 15, 10, 0.7), rgba(139, 69, 19, 0.5));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .portrait-frame:hover .portrait-overlay {
+            opacity: 1;
+        }
+        
+        .portrait-frame:hover .portrait-img {
+            transform: scale(1.1);
+        }
+        
+        .portrait-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             color: var(--paper-bg);
-            opacity: 0.9;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #2c1810, #5d4037);
+        }
+        
+        .portrait-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--accent-3);
+            opacity: 0.8;
+        }
+        
+        .portrait-placeholder p {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .upload-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: rgba(184, 134, 11, 0.2);
+            border: 2px solid var(--accent-3);
+            color: var(--accent-3);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .upload-btn:hover {
+            background: var(--accent-3);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(184, 134, 11, 0.3);
         }
         
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 25px;
+            font-size: 4.2rem;
+            margin-bottom: 30px;
             color: var(--paper-bg);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             font-weight: 800;
             position: relative;
             display: inline-block;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), var(--accent-3), var(--primary-color), transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(139, 69, 19, 0.5);
         }
         
         h1::after {
-            content: '';
+            content: '1821-1881';
             position: absolute;
-            bottom: -15px;
+            bottom: -40px;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-3));
-            border-radius: 2px;
+            font-size: 1.5rem;
+            color: var(--accent-3);
+            font-weight: 400;
+            letter-spacing: 3px;
         }
         
         .tagline {
-            font-size: 1.8rem;
+            font-size: 2.1rem;
             color: var(--accent-3);
-            margin-bottom: 50px;
+            margin: 80px 0 60px;
             font-weight: 300;
             font-style: italic;
             line-height: 1.6;
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .tagline::before,
+        .tagline::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.5;
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .tagline::before {
+            top: -30px;
+            left: -40px;
+        }
+        
+        .tagline::after {
+            bottom: -50px;
+            right: -40px;
+            transform: rotate(180deg);
         }
         
         .typewriter-cursor {
             display: inline-block;
             width: 3px;
-            height: 1.8rem;
+            height: 2.1rem;
             background-color: var(--accent-3);
-            margin-left: 5px;
+            margin-left: 8px;
             animation: blink 1s infinite;
             vertical-align: text-bottom;
+            box-shadow: 0 0 10px var(--accent-3);
         }
         
         @keyframes blink {
@@ -313,70 +582,118 @@
             51%, 100% { opacity: 0; }
         }
         
-        /* Кнопки в стиле старинных книжных закладок */
+        /* Улучшенные кнопки-закладки */
         .quick-access {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 60px;
+            gap: 25px;
+            margin-top: 80px;
             flex-wrap: wrap;
         }
         
         .bookmark-btn {
-            padding: 15px 30px;
-            background: rgba(139, 69, 19, 0.2);
+            padding: 18px 35px;
+            background: rgba(139, 69, 19, 0.25);
             border: 2px solid var(--primary-color);
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 15px 15px 0;
             color: var(--paper-bg);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             position: relative;
             overflow: hidden;
             font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+            min-width: 200px;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .bookmark-btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-2));
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
         }
         
         .bookmark-btn:hover::before {
+            left: 100%;
+        }
+        
+        .bookmark-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-2));
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+        
+        .bookmark-btn:hover::after {
             opacity: 1;
         }
         
         .bookmark-btn:hover {
             color: var(--paper-bg);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-8px) translateX(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: transparent;
         }
         
-        /* Основной контент на фоне бумаги */
+        .bookmark-btn i {
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+        
+        .bookmark-btn:hover i {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        /* Улучшенные секции на фоне бумаги */
         .paper-section {
             background-color: var(--paper-bg);
-            border-radius: 5px;
-            padding: 60px;
-            margin-bottom: 80px;
+            border-radius: 10px;
+            padding: 70px;
+            margin-bottom: 100px;
             position: relative;
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.2),
-                inset 0 0 100px rgba(139, 69, 19, 0.05);
-            border: 1px solid rgba(139, 69, 19, 0.2);
+                0 25px 60px rgba(0, 0, 0, 0.25),
+                inset 0 0 150px rgba(139, 69, 19, 0.08),
+                0 0 0 1px rgba(139, 69, 19, 0.1),
+                0 0 0 4px var(--paper-bg),
+                0 0 0 6px rgba(139, 69, 19, 0.2);
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
         }
         
         .paper-section::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            border-radius: 5px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .paper-section::after {
             content: '';
             position: absolute;
             top: 0;
@@ -384,106 +701,137 @@
             right: 0;
             height: 100%;
             background-image: 
-                linear-gradient(90deg, transparent 79px, rgba(139, 69, 19, 0.1) 79px, transparent 80px),
-                linear-gradient(var(--paper-bg) 1.1em, rgba(139, 69, 19, 0.1) 1.1em, var(--paper-bg) 1.2em);
-            background-size: 100% 1.2em;
+                linear-gradient(90deg, transparent 79px, rgba(139, 69, 19, 0.15) 79px, transparent 80px),
+                linear-gradient(var(--paper-bg) 1.2em, rgba(139, 69, 19, 0.1) 1.2em, var(--paper-bg) 1.3em);
+            background-size: 100% 1.3em;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.4;
             z-index: 0;
         }
         
         .paper-section > * {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
         
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            margin-bottom: 50px;
+            font-size: 3.2rem;
+            margin-bottom: 60px;
             color: var(--primary-color);
             position: relative;
-            padding-bottom: 20px;
+            padding-bottom: 30px;
             text-align: center;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
         
         .section-title::after {
             content: '';
             display: block;
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-3));
-            margin: 20px auto;
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), var(--accent-3), transparent);
+            margin: 25px auto;
             border-radius: 2px;
+            box-shadow: 0 0 10px rgba(139, 69, 19, 0.3);
         }
         
-        /* Введение */
+        /* Улучшенное введение */
         .intro-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
+            gap: 70px;
+            margin-bottom: 90px;
         }
         
         .intro-text {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--ink-color);
             line-height: 1.9;
         }
         
         .intro-text p {
-            margin-bottom: 30px;
-            text-indent: 2em;
+            margin-bottom: 35px;
+            text-indent: 3em;
             position: relative;
+            padding: 15px 20px;
+            background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.05), transparent);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .intro-text p:hover {
+            background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.1), transparent);
+            transform: translateX(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
         
         .quote-mark {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 5rem;
             color: var(--primary-color);
             opacity: 0.3;
             position: absolute;
-            top: -20px;
-            left: -10px;
+            top: -30px;
+            left: -20px;
             line-height: 1;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
         
         .highlight {
             color: var(--primary-color);
             font-weight: 700;
-            text-shadow: 0 0 10px rgba(139, 69, 19, 0.2);
+            text-shadow: 0 0 15px rgba(139, 69, 19, 0.3);
             position: relative;
             display: inline-block;
+            padding: 0 5px;
+            transition: var(--transition);
         }
         
-        .highlight::after {
+        .highlight::before {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 2px;
-            background: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-3));
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 1px;
         }
         
-        .highlight:hover::after {
+        .highlight:hover::before {
             transform: scaleX(1);
         }
         
-        /* Витрина рукописи */
+        .highlight:hover {
+            color: var(--accent-2);
+            text-shadow: 0 0 20px rgba(210, 105, 30, 0.4);
+        }
+        
+        /* Улучшенная витрина рукописи */
         .manuscript-display {
             background: var(--paper-bg-light);
-            border-radius: 5px;
-            padding: 40px;
+            border-radius: 10px;
+            padding: 50px;
             box-shadow: 
-                inset 0 0 20px rgba(0, 0, 0, 0.1),
-                0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(139, 69, 19, 0.3);
+                inset 0 0 40px rgba(0, 0, 0, 0.15),
+                0 15px 40px rgba(0, 0, 0, 0.25),
+                inset 0 0 0 1px rgba(139, 69, 19, 0.3);
+            border: 2px solid rgba(139, 69, 19, 0.4);
             position: relative;
             overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .manuscript-display:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                inset 0 0 50px rgba(0, 0, 0, 0.2),
+                0 25px 60px rgba(0, 0, 0, 0.35),
+                var(--glow);
         }
         
         .manuscript-display::before {
@@ -493,7 +841,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(139, 69, 19, 0.05), transparent);
+            background: linear-gradient(135deg, transparent, rgba(139, 69, 19, 0.08), transparent);
             z-index: 0;
         }
         
@@ -501,65 +849,98 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .manuscript-title {
             font-family: 'Old Standard TT', serif;
             font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 1.5px;
+            font-size: 1.7rem;
+            letter-spacing: 2px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+        }
+        
+        .manuscript-title::before {
+            content: '✒';
+            font-size: 2rem;
+            color: var(--accent-3);
         }
         
         .manuscript-icons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
         
         .manuscript-icons i {
             cursor: pointer;
             transition: var(--transition);
-            font-size: 1.3rem;
-            width: 40px;
-            height: 40px;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(139, 69, 19, 0.1);
+            background: rgba(139, 69, 19, 0.15);
+            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .manuscript-icons i:hover {
             color: var(--accent-2);
-            transform: translateY(-5px);
-            background: rgba(139, 69, 19, 0.2);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) rotate(15deg);
+            background: rgba(139, 69, 19, 0.25);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .manuscript-content {
             font-family: 'Old Standard TT', serif;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            padding: 20px;
-            border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(139, 69, 19, 0.1);
+            font-size: 1.3rem;
+            line-height: 1.9;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(139, 69, 19, 0.2);
             position: relative;
-            max-height: 400px;
+            max-height: 450px;
             overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+        
+        .manuscript-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .manuscript-content::-webkit-scrollbar-track {
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 4px;
+        }
+        
+        .manuscript-content::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
         }
         
         .manuscript-line {
             display: block;
-            margin-bottom: 10px;
-            padding-left: 20px;
+            margin-bottom: 12px;
+            padding-left: 25px;
             position: relative;
+            transition: var(--transition);
+        }
+        
+        .manuscript-line:hover {
+            background: rgba(139, 69, 19, 0.08);
+            border-radius: 3px;
+            padding-left: 30px;
         }
         
         .manuscript-line::before {
@@ -567,35 +948,39 @@
             position: absolute;
             left: 0;
             color: var(--ink-gray);
-            font-size: 0.9rem;
-            width: 20px;
+            font-size: 1rem;
+            width: 25px;
             text-align: right;
+            font-weight: 600;
         }
         
-        /* Карточки романов */
+        /* Улучшенные карточки романов с активными ссылками */
         .novels-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            margin-bottom: 90px;
         }
         
         .novel-card {
             background: var(--paper-bg-light);
-            border-radius: 5px;
-            padding: 40px 30px;
+            border-radius: 10px;
+            padding: 45px 35px;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(139, 69, 19, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
         
         .novel-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-20px) scale(1.03);
             box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.2),
-                0 0 20px rgba(139, 69, 19, 0.1);
+                0 35px 70px rgba(0, 0, 0, 0.3),
+                var(--glow);
             border-color: var(--primary-color);
         }
         
@@ -606,29 +991,35 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(139, 69, 19, 0.05), transparent);
+            background: linear-gradient(45deg, transparent, rgba(139, 69, 19, 0.08), transparent);
+            transition: var(--transition);
+        }
+        
+        .novel-card:hover::before {
+            background: linear-gradient(45deg, transparent, rgba(139, 69, 19, 0.15), transparent);
         }
         
         .novel-icon {
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: var(--primary-color);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: center;
             transition: var(--transition);
         }
         
         .novel-card:hover .novel-icon {
-            transform: scale(1.2) rotate(5deg);
+            transform: scale(1.3) rotate(10deg);
+            filter: drop-shadow(0 0 10px rgba(139, 69, 19, 0.5));
         }
         
         .novel-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 25px;
             color: var(--primary-color);
             text-align: center;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
         }
         
         .novel-card h3::after {
@@ -637,16 +1028,23 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 2px;
-            background: var(--primary-color);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-3));
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        
+        .novel-card:hover h3::after {
+            width: 150px;
+            background: linear-gradient(90deg, var(--accent-3), var(--primary-color));
         }
         
         .novel-card p {
             color: var(--ink-gray);
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.15rem;
+            line-height: 1.8;
             text-align: justify;
         }
         
@@ -654,16 +1052,71 @@
             display: flex;
             justify-content: space-between;
             color: var(--ink-gray);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(139, 69, 19, 0.2);
-            padding-top: 15px;
+            font-size: 1rem;
+            border-top: 1px solid rgba(139, 69, 19, 0.3);
+            padding-top: 20px;
+            margin-top: 25px;
         }
         
-        /* Хронологическая шкала */
+        .read-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-2));
+            color: var(--paper-bg);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .read-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .read-btn:hover::before {
+            left: 100%;
+        }
+        
+        .read-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.4);
+        }
+        
+        .book-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        
+        .novel-card:hover .book-link {
+            opacity: 1;
+            transform: rotate(45deg);
+            color: var(--accent-3);
+        }
+        
+        /* Улучшенная хронологическая шкала */
         .timeline {
             position: relative;
-            margin: 80px 0;
-            padding: 40px 0;
+            margin: 90px 0;
+            padding: 50px 0;
         }
         
         .timeline::before {
@@ -672,120 +1125,189 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 4px;
+            width: 6px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--primary-color), var(--accent-3));
-            border-radius: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-3), var(--primary-color));
+            border-radius: 3px;
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.3);
         }
         
         .timeline-item {
             width: 45%;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .timeline-item:nth-child(odd) {
             margin-left: 0;
             margin-right: auto;
             text-align: right;
-            padding-right: 60px;
+            padding-right: 80px;
         }
         
         .timeline-item:nth-child(even) {
             margin-left: auto;
             margin-right: 0;
-            padding-left: 60px;
+            padding-left: 80px;
         }
         
         .timeline-year {
             position: absolute;
             top: 0;
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-2));
             color: var(--paper-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.4rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--paper-bg);
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .timeline-item:hover .timeline-year {
+            transform: scale(1.2) rotate(360deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 69, 19, 0.5);
         }
         
         .timeline-item:nth-child(odd) .timeline-year {
-            right: -30px;
+            right: -35px;
         }
         
         .timeline-item:nth-child(even) .timeline-year {
-            left: -30px;
+            left: -35px;
         }
         
         .timeline-content {
             background: var(--paper-bg-light);
-            padding: 25px;
-            border-radius: 5px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(139, 69, 19, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            transition: var(--transition);
+        }
+        
+        .timeline-item:hover .timeline-content {
+            transform: translateX(10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), var(--glow);
+            border-color: var(--primary-color);
         }
         
         .timeline-content h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
         }
         
-        /* Философские концепции */
+        .timeline-content h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            border-radius: 2px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content h4::after {
+            left: auto;
+            right: 0;
+            background: linear-gradient(90deg, transparent, var(--primary-color));
+        }
+        
+        /* Улучшенные философские концепции */
         .philosophy-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
         }
         
         .philosophy-card {
             background: var(--paper-bg-light);
-            border-radius: 5px;
-            padding: 30px;
+            border-radius: 10px;
+            padding: 35px;
             transition: var(--transition);
-            border-left: 5px solid var(--primary-color);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-left: 8px solid var(--primary-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
         
         .philosophy-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2), var(--glow);
             border-left-color: var(--accent-3);
+        }
+        
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(139, 69, 19, 0.05), transparent);
+            z-index: 0;
+        }
+        
+        .philosophy-card > * {
+            position: relative;
+            z-index: 1;
         }
         
         .philosophy-card h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         
         .philosophy-card h4 i {
             color: var(--accent-3);
+            font-size: 1.8rem;
+            transition: var(--transition);
         }
         
-        /* Интерактивный раздел */
+        .philosophy-card:hover h4 i {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        /* Улучшенный интерактивный раздел */
         .interactive-lab {
             text-align: center;
-            margin: 100px 0;
-            padding: 70px;
+            margin: 120px 0;
+            padding: 80px;
             background: var(--paper-bg);
-            border-radius: 5px;
+            border-radius: 15px;
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.2),
-                inset 0 0 100px rgba(139, 69, 19, 0.05);
+                0 30px 80px rgba(0, 0, 0, 0.3),
+                inset 0 0 150px rgba(139, 69, 19, 0.1),
+                0 0 0 4px var(--paper-bg),
+                0 0 0 8px rgba(139, 69, 19, 0.2);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(139, 69, 19, 0.2);
+            border: 2px solid rgba(139, 69, 19, 0.3);
         }
         
         .interactive-lab::before {
@@ -796,138 +1318,201 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+            z-index: 0;
         }
         
-        .interactive-lab h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-        }
-        
-        .interactive-lab p {
-            font-size: 1.3rem;
-            color: var(--ink-gray);
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-        
-        .quote-generator {
-            margin: 40px 0;
-            padding: 30px;
-            background: var(--paper-bg-light);
-            border-radius: 5px;
-            border: 2px dashed var(--primary-color);
-        }
-        
-        .generated-quote {
-            font-size: 1.5rem;
-            color: var(--ink-color);
-            font-style: italic;
-            margin: 30px 0;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(139, 69, 19, 0.05);
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-        
-        #generateQuote {
-            margin: 20px 0 40px;
-            padding: 20px 50px;
-            font-size: 1.3rem;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-2));
-            border: none;
-            color: var(--paper-bg);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 700;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        #generateQuote:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 15px 30px rgba(139, 69, 19, 0.3);
-        }
-        
-        .stats-display {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .stat-box {
-            width: 120px;
-            height: 120px;
-            background: var(--paper-bg-light);
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid var(--primary-color);
-            transition: var(--transition);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .stat-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            font-family: 'Old Standard TT', serif;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--ink-gray);
-            margin-top: 10px;
-        }
-        
-        /* Контакты */
-        .contact-section {
-            text-align: center;
-            padding: 80px 0;
-            background: var(--paper-bg);
-            border-radius: 5px;
-            margin-bottom: 80px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(139, 69, 19, 0.2);
-        }
-        
-        .contact-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 35px;
-            color: var(--primary-color);
+        .interactive-lab > * {
             position: relative;
             z-index: 1;
         }
         
+        .interactive-lab h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 35px;
+            color: var(--primary-color);
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interactive-lab p {
+            font-size: 1.5rem;
+            color: var(--ink-gray);
+            margin-bottom: 50px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.9;
+        }
+        
+        .quote-generator {
+            margin: 50px 0;
+            padding: 40px;
+            background: var(--paper-bg-light);
+            border-radius: 10px;
+            border: 3px dashed var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .generated-quote {
+            font-size: 1.8rem;
+            color: var(--ink-color);
+            font-style: italic;
+            margin: 40px 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: rgba(139, 69, 19, 0.08);
+            border-radius: 10px;
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+        
+        .generated-quote::before,
+        .generated-quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .generated-quote::before {
+            top: 10px;
+            left: 20px;
+        }
+        
+        .generated-quote::after {
+            bottom: 10px;
+            right: 20px;
+            transform: rotate(180deg);
+        }
+        
+        #generateQuote {
+            margin: 30px 0 50px;
+            padding: 22px 60px;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-2));
+            border: none;
+            color: var(--paper-bg);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.4);
+        }
+        
+        #generateQuote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s;
+        }
+        
+        #generateQuote:hover::before {
+            left: 100%;
+        }
+        
+        #generateQuote:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 25px 50px rgba(139, 69, 19, 0.6),
+                0 0 30px rgba(139, 69, 19, 0.4);
+        }
+        
+        .stats-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-box {
+            width: 140px;
+            height: 140px;
+            background: var(--paper-bg-light);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid var(--primary-color);
+            transition: var(--transition);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-15px) scale(1.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), var(--glow);
+            border-color: var(--accent-3);
+        }
+        
+        .stat-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            font-family: 'Old Standard TT', serif;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .stat-box:hover .stat-value {
+            color: var(--accent-2);
+            transform: scale(1.2);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--ink-gray);
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        /* Улучшенные контакты */
+        .contact-section {
+            text-align: center;
+            padding: 90px 0;
+            background: var(--paper-bg);
+            border-radius: 15px;
+            margin-bottom: 90px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.25),
+                inset 0 0 150px rgba(139, 69, 19, 0.08);
+        }
+        
+        .contact-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 45px;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
         .contact-section p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin: 0 auto 60px;
+            font-size: 1.6rem;
+            max-width: 750px;
+            margin: 0 auto 70px;
             color: var(--ink-gray);
             position: relative;
             z-index: 1;
@@ -937,104 +1522,188 @@
         .contact-btn {
             position: relative;
             z-index: 1;
-            padding: 20px 50px;
-            font-size: 1.3rem;
+            padding: 25px 60px;
+            font-size: 1.5rem;
             background: transparent;
             color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            border-radius: 5px;
+            border: 3px solid var(--primary-color);
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
             transition: var(--transition);
             display: inline-block;
             overflow: hidden;
             font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 69, 19, 0.2), transparent);
+            transition: left 0.8s;
+        }
+        
+        .contact-btn:hover::before {
+            left: 100%;
         }
         
         .contact-btn:hover {
-            background-color: rgba(139, 69, 19, 0.1);
-            transform: translateY(-5px);
+            background-color: rgba(139, 69, 19, 0.15);
+            transform: translateY(-8px);
             box-shadow: 
-                0 15px 30px rgba(139, 69, 19, 0.2);
+                0 25px 50px rgba(139, 69, 19, 0.3),
+                0 0 30px rgba(139, 69, 19, 0.2);
+            border-color: var(--accent-3);
         }
         
-        /* Подвал */
+        .contact-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-stat {
+            text-align: center;
+        }
+        
+        .contact-stat-value {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: 'Old Standard TT', serif;
+            font-weight: 800;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-stat-label {
+            color: var(--ink-gray);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Улучшенный подвал */
         footer {
             text-align: center;
-            padding: 60px 0 40px;
+            padding: 80px 0 50px;
             color: var(--paper-bg);
-            border-top: 1px solid rgba(139, 69, 19, 0.3);
+            border-top: 2px solid rgba(139, 69, 19, 0.4);
             position: relative;
-            background: rgba(26, 15, 10, 0.9);
+            background: rgba(26, 15, 10, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 19, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(160, 82, 45, 0.2) 0%, transparent 50%);
+            z-index: -1;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 50px;
             flex-wrap: wrap;
         }
         
         .social-link {
             color: var(--paper-bg);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             transition: var(--transition);
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(139, 69, 19, 0.3);
-            border: 1px solid rgba(139, 69, 19, 0.5);
+            background: rgba(139, 69, 19, 0.4);
+            border: 2px solid rgba(184, 134, 11, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-3));
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+        }
+        
+        .social-link:hover::before {
+            opacity: 1;
+        }
+        
+        .social-link i {
+            position: relative;
+            z-index: 1;
         }
         
         .social-link:hover {
-            color: var(--accent-3);
-            transform: translateY(-10px);
-            background: rgba(139, 69, 19, 0.5);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            color: var(--paper-bg);
+            transform: translateY(-15px) rotate(15deg) scale(1.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: transparent;
         }
         
         footer p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
             opacity: 0.9;
         }
         
         .year {
             color: var(--accent-3);
-            font-weight: 700;
+            font-weight: 800;
         }
         
         .copyright {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             opacity: 0.7;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
-        /* Кнопка прокрутки наверх */
+        /* Улучшенная кнопка прокрутки наверх */
         .scroll-top {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
+            bottom: 50px;
+            right: 50px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-2));
             color: var(--paper-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: var(--transition);
             opacity: 0;
             visibility: hidden;
             z-index: 1000;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border: none;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--paper-bg);
         }
         
         .scroll-top.active {
@@ -1043,40 +1712,46 @@
         }
         
         .scroll-top:hover {
-            transform: translateY(-10px);
-            background: var(--accent-2);
+            transform: translateY(-10px) rotate(360deg);
+            background: linear-gradient(45deg, var(--accent-3), var(--primary-color));
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3);
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(184, 134, 11, 0.4);
         }
         
-        /* Переключатель режима чтения */
+        /* Улучшенный переключатель режима чтения */
         .reading-mode {
             position: fixed;
-            top: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            top: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
             background: rgba(26, 15, 10, 0.9);
             color: var(--accent-3);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: var(--transition);
             z-index: 1000;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(139, 69, 19, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(139, 69, 19, 0.5);
+            backdrop-filter: blur(10px);
         }
         
         .reading-mode:hover {
-            transform: rotate(180deg) scale(1.1);
+            transform: rotate(180deg) scale(1.2);
             background: var(--primary-color);
             color: var(--paper-bg);
+            border-color: var(--accent-3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(139, 69, 19, 0.4);
         }
         
-        /* Модальное окно */
+        /* Улучшенное модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -1084,48 +1759,317 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            padding: 20px;
         }
         
         .modal.active {
             display: flex;
+            animation: modalFadeIn 0.5s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(15px);
+            }
         }
         
         .modal-content {
             background: var(--paper-bg);
-            border-radius: 5px;
-            padding: 50px;
-            max-width: 700px;
-            width: 90%;
-            max-height: 80vh;
+            border-radius: 15px;
+            padding: 60px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
             overflow-y: auto;
             position: relative;
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--primary-color);
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.5),
+                inset 0 0 100px rgba(139, 69, 19, 0.1);
+            animation: modalContentAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @keyframes modalContentAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
         
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 25px;
             background: none;
             border: none;
             color: var(--primary-color);
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
             transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 69, 19, 0.1);
         }
         
         .modal-close:hover {
             transform: rotate(90deg) scale(1.2);
+            background: rgba(139, 69, 19, 0.2);
+            color: var(--accent-2);
         }
         
-        /* Адаптивность */
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 120px;
+            right: 40px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-2));
+            color: var(--paper-bg);
+            padding: 20px 35px;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            z-index: 2001;
+            transform: translateX(100px);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.5s;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+            max-width: 400px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Улучшенная адаптивность */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 40px;
+            }
+            
+            .nav-container {
+                padding: 0 40px;
+            }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+        }
+        
         @media (max-width: 992px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            .nav-container {
+                padding: 0 30px;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 15, 10, 0.98);
+                padding: 40px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+                z-index: 999;
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 30px;
+                border-bottom: 2px solid rgba(139, 69, 19, 0.4);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.6rem;
+                margin: 60px 0 40px;
+            }
+            
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .paper-section {
+                padding: 50px 40px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .novels-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .timeline::before {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 100px);
+                margin-left: 100px !important;
+                text-align: left !important;
+                padding-left: 70px !important;
+                padding-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-year,
+            .timeline-item:nth-child(even) .timeline-year {
+                left: -100px;
+                right: auto;
+            }
+            
+            .interactive-lab {
+                padding: 50px 40px;
+            }
+            
+            .contact-section {
+                padding: 70px 40px;
+            }
+            
+            .reading-mode, .scroll-top {
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
+            }
+            
+            .reading-mode {
+                top: 25px;
+                right: 25px;
+            }
+            
+            .scroll-top {
+                bottom: 30px;
+                right: 30px;
+            }
+            
+            .portrait-frame {
+                width: 240px;
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 180px 0 80px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h1::after {
+                font-size: 1.3rem;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+            
+            .portrait-frame {
+                width: 200px;
+                height: 250px;
+            }
+            
+            .quick-access {
+                gap: 20px;
+                margin-top: 60px;
+            }
+            
+            .bookmark-btn {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+                min-width: 170px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .intro-text {
+                font-size: 1.2rem;
+            }
+            
+            .interactive-lab h3 {
+                font-size: 2.5rem;
+            }
+            
+            .interactive-lab p {
+                font-size: 1.3rem;
+            }
+            
+            .contact-section h2 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-section p {
+                font-size: 1.3rem;
+            }
+            
+            .generated-quote {
+                font-size: 1.5rem;
+                padding: 20px;
+            }
+            
+            .stats-display {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .stat-box {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .modal-content {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .container {
                 padding: 0 20px;
             }
@@ -1134,212 +2078,79 @@
                 padding: 0 20px;
             }
             
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: rgba(26, 15, 10, 0.98);
-                padding: 30px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-                z-index: 1000;
-            }
-            
             h1 {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
             }
             
             .tagline {
-                font-size: 1.5rem;
-            }
-            
-            .intro-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
+                font-size: 1.2rem;
             }
             
             .paper-section {
-                padding: 40px 30px;
-            }
-            
-            .section-title {
-                font-size: 2.3rem;
-            }
-            
-            .novels-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                width: calc(100% - 80px);
-                margin-left: 80px !important;
-                text-align: left !important;
-                padding-left: 60px !important;
-                padding-right: 0 !important;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-year,
-            .timeline-item:nth-child(even) .timeline-year {
-                left: -80px;
-                right: auto;
-            }
-            
-            .interactive-lab {
-                padding: 40px 30px;
-            }
-            
-            .contact-section {
-                padding: 60px 30px;
-            }
-            
-            .reading-mode, .scroll-top {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-            
-            .reading-mode {
-                top: 20px;
-                right: 20px;
-            }
-            
-            .scroll-top {
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            header {
-                padding: 150px 0 60px;
-            }
-            
-            h1 {
-                font-size: 2.3rem;
-            }
-            
-            .tagline {
-                font-size: 1.3rem;
-            }
-            
-            .portrait-frame {
-                width: 150px;
-                height: 200px;
-            }
-            
-            .portrait {
-                font-size: 4rem;
-            }
-            
-            .quick-access {
-                gap: 15px;
-            }
-            
-            .bookmark-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .intro-text {
-                font-size: 1.15rem;
-            }
-            
-            .interactive-lab h3 {
-                font-size: 2rem;
-            }
-            
-            .interactive-lab p {
-                font-size: 1.15rem;
-            }
-            
-            .contact-section h2 {
-                font-size: 2.3rem;
-            }
-            
-            .contact-section p {
-                font-size: 1.15rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .tagline {
-                font-size: 1.1rem;
-            }
-            
-            .paper-section {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             
             .manuscript-display {
-                padding: 25px;
-            }
-            
-            .novel-card {
                 padding: 30px 20px;
             }
             
+            .novel-card {
+                padding: 35px 25px;
+            }
+            
             .stats-display {
-                gap: 15px;
-            }
-            
-            .stat-box {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .stat-value {
-                font-size: 1.8rem;
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .social-link {
-                width: 50px;
-                height: 50px;
-                font-size: 1.3rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+            
+            .bookmark-btn {
+                min-width: 100%;
+            }
+            
+            .portrait-frame {
+                width: 180px;
+                height: 225px;
+            }
+            
+            .contact-stats {
+                gap: 30px;
+            }
+            
+            .contact-stat-value {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Фон с эффектом старой бумаги -->
+    <!-- Улучшенный фон -->
     <div class="paper-texture"></div>
     
-    <!-- Чернильные кляксы -->
+    <!-- Улучшенные чернильные кляксы -->
     <div class="ink-blots">
         <div class="ink-blot blot-1"></div>
         <div class="ink-blot blot-2"></div>
         <div class="ink-blot blot-3"></div>
+        <div class="ink-blot blot-4"></div>
     </div>
     
     <!-- Летящие буквы -->
     <div class="floating-letters" id="floatingLetters"></div>
     
-    <!-- Навигация -->
+    <!-- Парящие обложки книг -->
+    <div class="floating-books" id="floatingBooks"></div>
+    
+    <!-- Улучшенная навигация -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <i class="fas fa-book-open"></i>
+                <i class="fas fa-feather-alt"></i>
                 <span>Достоевский</span>
             </a>
             
@@ -1349,7 +2160,7 @@
                 <a href="#philosophy" class="nav-link">Философия</a>
                 <a href="#timeline" class="nav-link">Хронология</a>
                 <a href="#lab" class="nav-link">Лаборатория</a>
-                <button class="bookmark-btn" id="showQuotes">
+                <button class="nav-btn" id="showQuotes">
                     <i class="fas fa-quote-right"></i> Цитаты
                 </button>
             </div>
@@ -1360,38 +2171,88 @@
         </div>
     </nav>
     
-    <!-- Переключатель режима чтения -->
+    <!-- Улучшенный переключатель режима чтения -->
     <div class="reading-mode" id="readingMode">
         <i class="fas fa-book-reader"></i>
     </div>
     
-    <!-- Модальное окно с цитатами -->
+    <!-- Улучшенное модальное окно с цитатами -->
     <div class="modal" id="quotesModal">
         <div class="modal-content">
             <button class="modal-close" id="modalClose">&times;</button>
-            <h2 style="color: var(--primary-color); margin-bottom: 20px; font-family: 'Playfair Display', serif;">Сокровищница цитат</h2>
-            <p style="color: var(--ink-gray); margin-bottom: 30px;">Выберите роман для просмотра ключевых цитат:</p>
+            <h2 style="color: var(--primary-color); margin-bottom: 30px; font-family: 'Playfair Display', serif; font-size: 2.5rem;">
+                <i class="fas fa-gem"></i> Сокровищница цитат
+            </h2>
+            <p style="color: var(--ink-gray); margin-bottom: 40px; font-size: 1.3rem;">Выберите роман для просмотра ключевых цитат великого писателя:</p>
             
-            <div class="quotes-selector">
-                <button class="bookmark-btn" data-quote="crime">Преступление и наказание</button>
-                <button class="bookmark-btn" data-quote="idiot">Идиот</button>
-                <button class="bookmark-btn" data-quote="brothers">Братья Карамазовы</button>
-                <button class="bookmark-btn" data-quote="demons">Бесы</button>
+            <div class="quotes-selector" style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
+                <button class="bookmark-btn" data-quote="crime" style="min-width: auto; flex: 1;">
+                    <i class="fas fa-gavel"></i> Преступление и наказание
+                </button>
+                <button class="bookmark-btn" data-quote="idiot" style="min-width: auto; flex: 1;">
+                    <i class="fas fa-crown"></i> Идиот
+                </button>
+                <button class="bookmark-btn" data-quote="brothers" style="min-width: auto; flex: 1;">
+                    <i class="fas fa-users"></i> Братья Карамазовы
+                </button>
+                <button class="bookmark-btn" data-quote="demons" style="min-width: auto; flex: 1;">
+                    <i class="fas fa-fire"></i> Бесы
+                </button>
             </div>
             
-            <div id="quotesContainer" style="margin-top: 30px; max-height: 300px; overflow-y: auto; padding: 20px; background: rgba(139, 69, 19, 0.05); border-radius: 5px;">
-                <p style="color: var(--ink-gray); font-style: italic;">Выберите роман для отображения цитат...</p>
+            <div id="quotesContainer" style="max-height: 350px; overflow-y: auto; padding: 30px; background: rgba(139, 69, 19, 0.08); border-radius: 10px; border: 2px solid rgba(139, 69, 19, 0.2);">
+                <p style="color: var(--ink-gray); font-style: italic; text-align: center; font-size: 1.2rem;">
+                    <i class="fas fa-arrow-up" style="margin-right: 10px;"></i>
+                    Выберите роман выше для отображения цитат...
+                </p>
             </div>
         </div>
     </div>
     
+    <!-- Модальное окно для загрузки фото -->
+    <div class="modal" id="photoModal">
+        <div class="modal-content">
+            <button class="modal-close" id="photoModalClose">&times;</button>
+            <h2 style="color: var(--primary-color); margin-bottom: 30px; font-family: 'Playfair Display', serif;">
+                <i class="fas fa-portrait"></i> Загрузка портрета Достоевского
+            </h2>
+            
+            <div style="margin-bottom: 40px;">
+                <p style="color: var(--ink-gray); margin-bottom: 20px; font-size: 1.2rem;">Вставьте ссылку на изображение Достоевского:</p>
+                <input type="text" id="photoUrl" placeholder="https://example.com/dostoevsky.jpg" style="width: 100%; padding: 15px; border: 2px solid var(--primary-color); border-radius: 8px; font-size: 1.1rem; background: var(--paper-bg-light); color: var(--ink-color);">
+                <p style="color: var(--ink-gray); margin-top: 10px; font-size: 0.9rem;">Рекомендуемый размер: 280x350px (портретная ориентация)</p>
+            </div>
+            
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <button class="bookmark-btn" id="loadPhoto" style="min-width: 200px;">
+                    <i class="fas fa-upload"></i> Загрузить фото
+                </button>
+                <button class="bookmark-btn" id="resetPhoto" style="min-width: 200px; background: rgba(160, 82, 45, 0.2); border-color: var(--accent-1);">
+                    <i class="fas fa-redo"></i> Сбросить
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <!-- Заголовок -->
+        <!-- Улучшенный заголовок -->
         <header>
             <div class="header-content">
-                <div class="portrait-frame">
+                <!-- Портрет с возможностью загрузки фото -->
+                <div class="portrait-frame" id="portraitFrame">
                     <div class="portrait">
-                        <i class="fas fa-feather-alt"></i>
+                        <img src="" alt="Фёдор Достоевский" class="portrait-img" id="portraitImg" style="display: none;">
+                        <div class="portrait-placeholder" id="portraitPlaceholder">
+                            <i class="fas fa-portrait"></i>
+                            <div>Портрет Ф.М. Достоевского</div>
+                            <p>Нажмите для загрузки фото</p>
+                            <button class="upload-btn" id="uploadPhotoBtn">
+                                <i class="fas fa-camera"></i> Загрузить фото
+                            </button>
+                        </div>
+                        <div class="portrait-overlay">
+                            <i class="fas fa-search-plus" style="font-size: 3rem; color: var(--accent-3);"></i>
+                        </div>
                     </div>
                 </div>
                 
@@ -1399,21 +2260,25 @@
                 <p class="tagline" id="typedText"></p>
                 <div class="typewriter-cursor" id="cursor"></div>
                 
+                <!-- Улучшенные кнопки быстрого доступа -->
                 <div class="quick-access">
                     <button class="bookmark-btn" id="exploreNovels">
-                        <i class="fas fa-book"></i> Исследовать романы
+                        <i class="fas fa-book-open"></i> Исследовать романы
                     </button>
                     <button class="bookmark-btn" id="startJourney">
-                        <i class="fas fa-map"></i> Начать путешествие
+                        <i class="fas fa-compass"></i> Начать путешествие
                     </button>
                     <button class="bookmark-btn" id="showTimeline">
-                        <i class="fas fa-history"></i> Хронология жизни
+                        <i class="fas fa-hourglass-half"></i> Хронология жизни
+                    </button>
+                    <button class="bookmark-btn" id="readOnline">
+                        <i class="fas fa-globe"></i> Читать онлайн
                     </button>
                 </div>
             </div>
         </header>
         
-        <!-- Основное содержание -->
+        <!-- Улучшенное основное содержание -->
         <section class="paper-section" id="about">
             <h2 class="section-title">Гений русской литературы</h2>
             
@@ -1429,12 +2294,13 @@
                 <div class="manuscript-display">
                     <div class="manuscript-header">
                         <div class="manuscript-title">
-                            <i class="fas fa-pen-nib"></i> Рукопись: "Дневник писателя"
+                            Рукопись: "Дневник писателя"
                         </div>
                         <div class="manuscript-icons">
-                            <i class="fas fa-copy" title="Скопировать"></i>
-                            <i class="fas fa-bookmark" title="Закладка"></i>
-                            <i class="fas fa-expand-alt" title="Развернуть"></i>
+                            <i class="fas fa-copy" title="Скопировать текст"></i>
+                            <i class="fas fa-bookmark" title="Добавить в закладки"></i>
+                            <i class="fas fa-expand-alt" title="Развернуть на весь экран"></i>
+                            <i class="fas fa-volume-up" title="Озвучить текст"></i>
                         </div>
                     </div>
                     <div class="manuscript-content">
@@ -1458,53 +2324,141 @@
             </div>
         </section>
         
-        <!-- Великие романы -->
+        <!-- Улучшенные великие романы с активными ссылками -->
         <section class="paper-section" id="novels">
             <h2 class="section-title">Великие романы</h2>
             
             <div class="novels-grid">
-                <div class="novel-card">
+                <!-- Преступление и наказание -->
+                <a href="https://ilibrary.ru/text/69/index.html" class="novel-card" target="_blank">
+                    <div class="book-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
                     <div class="novel-icon">
                         <i class="fas fa-gavel"></i>
                     </div>
                     <h3>Преступление и наказание</h3>
                     <p>Глубокое исследование психологии преступления, морали и искупления. История Родиона Раскольникова, студента, совершившего убийство для проверки своей теории о "праве сильной личности".</p>
                     <div class="novel-stats">
-                        <span>Год: 1866</span>
-                        <span>Страниц: 672</span>
-                        <span>Герои: 47</span>
+                        <span><i class="fas fa-calendar"></i> 1866</span>
+                        <span><i class="fas fa-book"></i> 672 стр.</span>
+                        <span><i class="fas fa-users"></i> 47 героев</span>
                     </div>
-                </div>
+                    <div class="read-btn">
+                        <i class="fas fa-book-open"></i> Читать онлайн
+                    </div>
+                </a>
                 
-                <div class="novel-card">
+                <!-- Идиот -->
+                <a href="https://ilibrary.ru/text/71/index.html" class="novel-card" target="_blank">
+                    <div class="book-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
                     <div class="novel-icon">
                         <i class="fas fa-crown"></i>
                     </div>
                     <h3>Идиот</h3>
                     <p>Попытка изобразить "положительно прекрасного человека" в лице князя Мышкина. Трагическая история о том, как чистота и доброта становятся непосильным бременем в жестоком мире.</p>
                     <div class="novel-stats">
-                        <span>Год: 1869</span>
-                        <span>Страниц: 640</span>
-                        <span>Герои: 52</span>
+                        <span><i class="fas fa-calendar"></i> 1869</span>
+                        <span><i class="fas fa-book"></i> 640 стр.</span>
+                        <span><i class="fas fa-users"></i> 52 героя</span>
                     </div>
-                </div>
+                    <div class="read-btn">
+                        <i class="fas fa-book-open"></i> Читать онлайн
+                    </div>
+                </a>
                 
-                <div class="novel-card">
+                <!-- Братья Карамазовы -->
+                <a href="https://ilibrary.ru/text/77/index.html" class="novel-card" target="_blank">
+                    <div class="book-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
                     <div class="novel-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Братья Карамазовы</h3>
                     <p>Вершина творчества Достоевского. Философская драма о вере, сомнении, свободе и моральной ответственности. История трёх братьев и их отца, охватывающая вечные вопросы бытия.</p>
                     <div class="novel-stats">
-                        <span>Год: 1880</span>
-                        <span>Страниц: 824</span>
-                        <span>Герои: 68</span>
+                        <span><i class="fas fa-calendar"></i> 1880</span>
+                        <span><i class="fas fa-book"></i> 824 стр.</span>
+                        <span><i class="fas fa-users"></i> 68 героев</span>
                     </div>
-                </div>
+                    <div class="read-btn">
+                        <i class="fas fa-book-open"></i> Читать онлайн
+                    </div>
+                </a>
+                
+                <!-- Бесы -->
+                <a href="https://ilibrary.ru/text/72/index.html" class="novel-card" target="_blank">
+                    <div class="book-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    <div class="novel-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Бесы</h3>
+                    <p>Политический роман-предупреждение о революционном движении в России. Исследование идейного терроризма и разрушительной силы радикальных идеологий.</p>
+                    <div class="novel-stats">
+                        <span><i class="fas fa-calendar"></i> 1872</span>
+                        <span><i class="fas fa-book"></i> 768 стр.</span>
+                        <span><i class="fas fa-users"></i> 58 героев</span>
+                    </div>
+                    <div class="read-btn">
+                        <i class="fas fa-book-open"></i> Читать онлайн
+                    </div>
+                </a>
+                
+                <!-- Униженные и оскорблённые -->
+                <a href="https://ilibrary.ru/text/68/index.html" class="novel-card" target="_blank">
+                    <div class="book-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    <div class="novel-icon">
+                        <i class="fas fa-heart-broken"></i>
+                    </div>
+                    <h3>Униженные и оскорблённые</h3>
+                    <p>Роман о страдании и сострадании, о людях, оказавшихся на дне общества. История любви и предательства, написанная с глубоким психологизмом.</p>
+                    <div class="novel-stats">
+                        <span><i class="fas fa-calendar"></i> 1861</span>
+                        <span><i class="fas fa-book"></i> 448 стр.</span>
+                        <span><i class="fas fa-users"></i> 32 героя</span>
+                    </div>
+                    <div class="read-btn">
+                        <i class="fas fa-book-open"></i> Читать онлайн
+                    </div>
+                </a>
+                
+                <!-- Подросток -->
+                <a href="https://ilibrary.ru/text/74/index.html" class="novel-card" target="_blank">
+                    <div class="book-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    <div class="novel-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Подросток</h3>
+                    <p>Роман о становлении личности, о поиске своего места в жизни. История Аркадия Долгорукого, молодого человека, пытающегося разобраться в сложных отношениях с отцом.</p>
+                    <div class="novel-stats">
+                        <span><i class="fas fa-calendar"></i> 1875</span>
+                        <span><i class="fas fa-book"></i> 608 стр.</span>
+                        <span><i class="fas fa-users"></i> 41 герой</span>
+                    </div>
+                    <div class="read-btn">
+                        <i class="fas fa-book-open"></i> Читать онлайн
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Кнопка для просмотра всех произведений -->
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://ilibrary.ru/author/dostoevsky/index.html" class="contact-btn" target="_blank" style="display: inline-block;">
+                    <i class="fas fa-books"></i> Все произведения Достоевского
+                </a>
             </div>
         </section>
         
-        <!-- Хронология жизни -->
+        <!-- Улучшенная хронология жизни -->
         <section class="paper-section" id="timeline">
             <h2 class="section-title">Хронология жизни и творчества</h2>
             
@@ -1559,7 +2513,7 @@
             </div>
         </section>
         
-        <!-- Философские концепции -->
+        <!-- Улучшенные философские концепции -->
         <section class="paper-section" id="philosophy">
             <h2 class="section-title">Философские концепции</h2>
             
@@ -1586,10 +2540,10 @@
             </div>
         </section>
         
-        <!-- Интерактивная лаборатория -->
+        <!-- Улучшенная интерактивная лаборатория -->
         <section class="interactive-lab" id="lab">
             <h3>Литературная лаборатория</h3>
-            <p>Исследуйте мир Достоевского через интерактивные элементы. Генерируйте цитаты, отслеживайте статистику и погружайтесь в философские размышления.</p>
+            <p>Исследуйте мир Достоевского через интерактивные элементы. Генерируйте цитаты, отслеживайте статистику и погружайтесь в философские размышления великого писателя.</p>
             
             <div class="quote-generator">
                 <div class="generated-quote" id="generatedQuote">
@@ -1597,7 +2551,7 @@
                 </div>
                 
                 <button id="generateQuote" class="btn">
-                    <i class="fas fa-quote-left"></i> Получить цитату
+                    <i class="fas fa-magic"></i> Получить цитату
                 </button>
                 
                 <div class="stats-display">
@@ -1606,8 +2560,8 @@
                         <div class="stat-label">Цитат создано</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-value" id="novelCount">5</div>
-                        <div class="stat-label">Романов изучено</div>
+                        <div class="stat-value" id="novelCount">11</div>
+                        <div class="stat-label">Романов</div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-value" id="readingTime">0</div>
@@ -1621,9 +2575,9 @@
             </div>
             
             <!-- Концептуальные темы -->
-            <div style="margin-top: 50px;">
-                <p style="margin-bottom: 20px; font-size: 1.2rem; color: var(--primary-color);">Исследуйте ключевые темы:</p>
-                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <div style="margin-top: 70px;">
+                <p style="margin-bottom: 25px; font-size: 1.4rem; color: var(--primary-color); font-weight: 600;">Исследуйте ключевые темы творчества:</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
                     <button class="bookmark-btn theme-btn" data-theme="suffering">
                         <i class="fas fa-torah"></i> Страдание
                     </button>
@@ -1637,69 +2591,74 @@
                         <i class="fas fa-dove"></i> Свобода
                     </button>
                 </div>
-                <div id="themeContent" style="margin-top: 30px; padding: 20px; background: rgba(139, 69, 19, 0.05); border-radius: 5px; min-height: 100px;"></div>
+                <div id="themeContent" style="margin-top: 30px; padding: 35px; background: rgba(139, 69, 19, 0.08); border-radius: 10px; min-height: 150px; border: 2px solid rgba(139, 69, 19, 0.2);"></div>
             </div>
         </section>
         
-        <!-- Контакты и наследие -->
+        <!-- Улучшенные контакты и наследие -->
         <section class="contact-section">
             <h2>Наследие великого мыслителя</h2>
             <p>Творчество Достоевского продолжает вдохновлять философов, писателей и мыслителей по всему миру. Его идеи остаются актуальными и в XXI веке, заставляя нас задуматься о вечных вопросах человеческого существования.
             </p>
-            <a href="#about" class="contact-btn">Начать изучение</a>
+            <a href="https://ru.wikipedia.org/wiki/Достоевский,_Фёдор_Михайлович" class="contact-btn" target="_blank">
+                <i class="fas fa-graduation-cap"></i> Подробнее в Википедии
+            </a>
             
-            <div style="margin-top: 60px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
-                <div style="text-align: center;">
-                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">11</div>
-                    <div style="color: var(--ink-gray);">Романов написано</div>
+            <div class="contact-stats">
+                <div class="contact-stat">
+                    <div class="contact-stat-value">11</div>
+                    <div class="contact-stat-label">Романов написано</div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">59</div>
-                    <div style="color: var(--ink-gray);">Лет жизни</div>
+                <div class="contact-stat">
+                    <div class="contact-stat-value">59</div>
+                    <div class="contact-stat-label">Лет жизни</div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">170+</div>
-                    <div style="color: var(--ink-gray);">Экранизаций</div>
+                <div class="contact-stat">
+                    <div class="contact-stat-value">170+</div>
+                    <div class="contact-stat-label">Экранизаций</div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">∞</div>
-                    <div style="color: var(--ink-gray);">Мыслей пробуждено</div>
+                <div class="contact-stat">
+                    <div class="contact-stat-value">∞</div>
+                    <div class="contact-stat-label">Мыслей пробуждено</div>
                 </div>
             </div>
         </section>
         
-        <!-- Подвал -->
+        <!-- Улучшенный подвал -->
         <footer>
             <div class="social-links">
-                <a href="#" class="social-link" title="Музей Достоевского">
-                    <i class="fas fa-landmark"></i>
+                <a href="https://ru.wikipedia.org/wiki/Достоевский,_Фёдор_Михайлович" class="social-link" title="Википедия" target="_blank">
+                    <i class="fab fa-wikipedia-w"></i>
                 </a>
-                <a href="#" class="social-link" title="Библиотека">
+                <a href="https://ilibrary.ru/author/dostoevsky/index.html" class="social-link" title="Читать онлайн" target="_blank">
                     <i class="fas fa-book"></i>
                 </a>
-                <a href="#" class="social-link" title="Исследования">
-                    <i class="fas fa-search"></i>
+                <a href="https://www.culture.ru/persons/8213/fedor-dostoevskii" class="social-link" title="Культура.РФ" target="_blank">
+                    <i class="fas fa-landmark"></i>
                 </a>
-                <a href="#" class="social-link" title="Архив">
-                    <i class="fas fa-archive"></i>
+                <a href="https://rvb.ru/dostoevsky/" class="social-link" title="Академическое собрание" target="_blank">
+                    <i class="fas fa-university"></i>
                 </a>
-                <a href="#" class="social-link" title="Философия">
-                    <i class="fas fa-brain"></i>
+                <a href="https://www.gutenberg.org/ebooks/author/689" class="social-link" title="Project Gutenberg" target="_blank">
+                    <i class="fab fa-gutenberg"></i>
                 </a>
-                <a href="#" class="social-link" title="Литература">
-                    <i class="fas fa-pen-fancy"></i>
+                <a href="https://www.youtube.com/results?search_query=достоевский+лекции" class="social-link" title="Лекции на YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
                 </a>
             </div>
-            <p>Вся страница создана в стиле литературного исследования с элементами интерактивности</p>
+            <p>Вся страница создана с глубоким уважением к творчеству Ф.М. Достоевского</p>
             <p>Дизайн вдохновлён атмосферой XIX века и глубиной мысли великого писателя</p>
             <p class="copyright">&copy; <span class="year">2026</span> | Исследование творчества Ф.М. Достоевского. Все цитаты принадлежат автору.</p>
         </footer>
     </div>
 
-    <!-- Кнопка прокрутки наверх -->
+    <!-- Улучшенная кнопка прокрутки наверх -->
     <div class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- Уведомления -->
+    <div class="notification" id="notification"></div>
 
     <script>
         // Основные элементы
@@ -1709,6 +2668,7 @@
         const navLinks = document.getElementById('navLinks');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const floatingLetters = document.getElementById('floatingLetters');
+        const floatingBooks = document.getElementById('floatingBooks');
         const readingModeBtn = document.getElementById('readingMode');
         const scrollTopBtn = document.getElementById('scrollTop');
         const quotesModal = document.getElementById('quotesModal');
@@ -1717,6 +2677,7 @@
         const exploreNovelsBtn = document.getElementById('exploreNovels');
         const startJourneyBtn = document.getElementById('startJourney');
         const showTimelineBtn = document.getElementById('showTimeline');
+        const readOnlineBtn = document.getElementById('readOnline');
         const generateQuoteBtn = document.getElementById('generateQuote');
         const generatedQuote = document.getElementById('generatedQuote');
         const quoteCountElement = document.getElementById('quoteCount');
@@ -1727,6 +2688,18 @@
         const manuscriptIcons = document.querySelectorAll('.manuscript-icons i');
         const quotesSelector = document.querySelectorAll('.quotes-selector button');
         const quotesContainer = document.getElementById('quotesContainer');
+        const notification = document.getElementById('notification');
+        
+        // Элементы для загрузки фото
+        const portraitFrame = document.getElementById('portraitFrame');
+        const portraitImg = document.getElementById('portraitImg');
+        const portraitPlaceholder = document.getElementById('portraitPlaceholder');
+        const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+        const photoModal = document.getElementById('photoModal');
+        const photoModalClose = document.getElementById('photoModalClose');
+        const loadPhotoBtn = document.getElementById('loadPhoto');
+        const resetPhotoBtn = document.getElementById('resetPhoto');
+        const photoUrlInput = document.getElementById('photoUrl');
         
         // Переменные состояния
         let quoteCount = 0;
@@ -1735,7 +2708,7 @@
         let isReadingMode = false;
         let startTime = Date.now();
         
-        // Цитаты Достоевского
+        // Цитаты Достоевского (увеличенная коллекция)
         const dostoevskyQuotes = [
             "Свобода не в том, чтобы не сдерживать себя, а в том, чтобы владеть собой.",
             "Человек есть тайна. Её надо разгадать, и ежели будешь её разгадывать всю жизнь, то не говори, что потерял время; я занимаюсь этой тайной, ибо хочу быть человеком.",
@@ -1746,39 +2719,53 @@
             "Любить человека — значит видеть его таким, каким его задумал Бог.",
             "Надо любить жизнь больше, чем смысл жизни.",
             "Чем умнее человек, тем более он замечает оригинальность в людях. Для заурядных — все люди на одно лицо.",
-            "Истинная любовь распознаётся по деяниям, а не по словам."
+            "Истинная любовь распознаётся по деяниям, а не по словам.",
+            "Счастье не в счастье, а лишь в его достижении.",
+            "Во всём есть черта, за которую перейти опасно; ибо, раз переступив, воротиться назад невозможно.",
+            "Унижая другого, вы не возвышаете себя.",
+            "Молчание есть всегдашний признак большого ума.",
+            "Не засоряйте свою память обидами, а то там может просто не остаться места для прекрасных мгновений."
         ];
         
-        // Цитаты по романам
+        // Цитаты по романам (расширенная коллекция)
         const novelQuotes = {
             crime: [
                 "Я не тебе поклонился, я всему страданию человеческому поклонился.",
                 "Страдание и боль всегда обязательны для широкого сознания и глубокого сердца.",
-                "Разве я старушонку убил? Я себя убил!"
+                "Разве я старушонку убил? Я себя убил!",
+                "Всё в руках человека, и всё-то он мимо носу проносит, единственно от одной трусости.",
+                "Сильные духом люди должны быть добрыми."
             ],
             idiot: [
                 "Сострадание есть главнейший и, может быть, единственный закон бытия всего человечества.",
                 "Красота — это страшная и ужасная вещь!",
-                "Я ведь только оттого и несчастен, что не смею быть счастливым."
+                "Я ведь только оттого и несчастен, что не смею быть счастливым.",
+                "Нельзя любить то, чего не знаешь.",
+                "Главное — самому себе не лгите."
             ],
             brothers: [
                 "Если ты направишься к цели и станешь дорогою останавливаться, чтобы швырять камнями во всякую лающую на тебя собаку, то никогда не дойдёшь до цели.",
                 "Любите всё создание Божие, и целое, и каждую песчинку. Каждый листик, каждый луч Божий любите.",
-                "Никто не сможет осудить, если не любил."
+                "Никто не сможет осудить, если не любил.",
+                "Тайна человеческого бытия не в том, чтобы только жить, а в том, для чего жить.",
+                "Сознание есть великое горе, но сознание есть и великая сила."
             ],
             demons: [
                 "Человеку, кроме счастья, так же точно и совершенно во столько же раз необходимо и несчастье.",
                 "Русский атеист — это прежде всего верующий человек.",
-                "Если хотите возвысить человека, унижайте его."
+                "Если хотите возвысить человека, унижайте его.",
+                "Самый простой способ завоевать доверие — это заставить человека думать, что ты его уважаешь.",
+                "Идеи правят миром, а не деньги и не штыки."
             ]
         };
         
-        // Тексты для печатающего эффекта
+        // Тексты для печатающего эффекта (улучшенные)
         const texts = [
             "Гений, прорвавшийся в самые глубины человеческой души",
             "Писатель, ставший философом, философ, оставшийся писателем",
             "Исследователь самых тёмных и светлых уголков человеческого сердца",
-            "Пророк русской литературы, голос которого звучит сквозь века"
+            "Пророк русской литературы, голос которого звучит сквозь века",
+            "Мастер психологического анализа и философской глубины"
         ];
         
         let currentTextIndex = 0;
@@ -1786,7 +2773,81 @@
         let isDeleting = false;
         let isTypingPaused = false;
         
-        // Функция печатающего текста
+        // Функция для показа уведомлений
+        function showNotification(message, type = 'info') {
+            notification.textContent = message;
+            notification.className = 'notification';
+            
+            // Разные цвета для разных типов уведомлений
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(45deg, var(--primary-color), var(--accent-3))';
+            } else if (type === 'error') {
+                notification.style.background = 'linear-gradient(45deg, #a0522d, #e06c75)';
+            } else {
+                notification.style.background = 'linear-gradient(45deg, var(--primary-color), var(--accent-2))';
+            }
+            
+            notification.classList.add('show');
+            
+            // Автоматическое скрытие
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Создание летающих букв (улучшенное)
+        function createFloatingLetters() {
+            const letters = 'ДОСТОЕВСКИЙФМРУССКАЯЛИТЕРАТУРА';
+            const letterCount = 25;
+            
+            for (let i = 0; i < letterCount; i++) {
+                const letter = document.createElement('div');
+                letter.classList.add('floating-letter');
+                letter.textContent = letters[Math.floor(Math.random() * letters.length)];
+                
+                // Случайная позиция и параметры
+                const left = Math.random() * 100;
+                const delay = Math.random() * 30;
+                const duration = 20 + Math.random() * 25;
+                const fontSize = 2 + Math.random() * 2;
+                const opacity = 0.1 + Math.random() * 0.15;
+                
+                letter.style.left = `${left}%`;
+                letter.style.animationDelay = `${delay}s`;
+                letter.style.animationDuration = `${duration}s`;
+                letter.style.fontSize = `${fontSize}rem`;
+                letter.style.opacity = opacity;
+                
+                floatingLetters.appendChild(letter);
+            }
+        }
+        
+        // Создание парящих обложек книг
+        function createFloatingBooks() {
+            const bookIcons = ['📖', '📚', '🖋️', '📜', '📒', '📕', '📗', '📘'];
+            const bookCount = 12;
+            
+            for (let i = 0; i < bookCount; i++) {
+                const book = document.createElement('div');
+                book.classList.add('floating-book');
+                book.textContent = bookIcons[Math.floor(Math.random() * bookIcons.length)];
+                
+                // Случайная позиция и параметры
+                const left = Math.random() * 100;
+                const delay = Math.random() * 40;
+                const duration = 30 + Math.random() * 40;
+                const fontSize = 1.5 + Math.random() * 1.5;
+                
+                book.style.left = `${left}%`;
+                book.style.animationDelay = `${delay}s`;
+                book.style.animationDuration = `${duration}s`;
+                book.style.fontSize = `${fontSize}rem`;
+                
+                floatingBooks.appendChild(book);
+            }
+        }
+        
+        // Функция печатающего текста (улучшенная)
         function typeWriter() {
             if (isTypingPaused) return;
             
@@ -1795,47 +2856,25 @@
             if (!isDeleting && currentCharIndex < currentText.length) {
                 typedTextElement.textContent += currentText.charAt(currentCharIndex);
                 currentCharIndex++;
-                setTimeout(typeWriter, 70);
+                
+                // Случайная скорость печати для реалистичности
+                const speed = 60 + Math.random() * 40;
+                setTimeout(typeWriter, speed);
             } else if (isDeleting && currentCharIndex > 0) {
                 typedTextElement.textContent = currentText.substring(0, currentCharIndex - 1);
                 currentCharIndex--;
-                setTimeout(typeWriter, 40);
+                setTimeout(typeWriter, 30);
             } else if (!isDeleting && currentCharIndex === currentText.length) {
                 isTypingPaused = true;
                 setTimeout(() => {
                     isTypingPaused = false;
                     isDeleting = true;
-                    setTimeout(typeWriter, 2000);
-                }, 3000);
+                    setTimeout(typeWriter, 1500);
+                }, 2500);
             } else if (isDeleting && currentCharIndex === 0) {
                 isDeleting = false;
                 currentTextIndex = (currentTextIndex + 1) % texts.length;
-                setTimeout(typeWriter, 500);
-            }
-        }
-        
-        // Создание летающих букв
-        function createFloatingLetters() {
-            const letters = 'ДОСТОЕВСКИЙФМ';
-            const letterCount = 20;
-            
-            for (let i = 0; i < letterCount; i++) {
-                const letter = document.createElement('div');
-                letter.classList.add('floating-letter');
-                letter.textContent = letters[Math.floor(Math.random() * letters.length)];
-                
-                // Случайная позиция и задержка
-                const left = Math.random() * 100;
-                const delay = Math.random() * 20;
-                const duration = 15 + Math.random() * 20;
-                const fontSize = 1.5 + Math.random() * 1;
-                
-                letter.style.left = `${left}%`;
-                letter.style.animationDelay = `${delay}s`;
-                letter.style.animationDuration = `${duration}s`;
-                letter.style.fontSize = `${fontSize}rem`;
-                
-                floatingLetters.appendChild(letter);
+                setTimeout(typeWriter, 300);
             }
         }
         
@@ -1846,188 +2885,324 @@
             readingTimeElement.textContent = readingTime;
         }
         
-        // Генерация случайной цитаты
+        // Генерация случайной цитаты (улучшенная)
         function generateRandomQuote() {
             const randomIndex = Math.floor(Math.random() * dostoevskyQuotes.length);
-            generatedQuote.textContent = `"${dostoevskyQuotes[randomIndex]}"`;
-            generatedQuote.style.opacity = '0';
+            const quote = dostoevskyQuotes[randomIndex];
             
-            // Анимация появления
+            // Анимация исчезновения
+            generatedQuote.style.opacity = '0';
+            generatedQuote.style.transform = 'translateY(20px)';
+            
             setTimeout(() => {
-                generatedQuote.style.transition = 'opacity 0.5s';
-                generatedQuote.style.opacity = '1';
-            }, 10);
+                generatedQuote.textContent = `"${quote}"`;
+                
+                // Анимация появления
+                setTimeout(() => {
+                    generatedQuote.style.transition = 'all 0.5s ease';
+                    generatedQuote.style.opacity = '1';
+                    generatedQuote.style.transform = 'translateY(0)';
+                }, 50);
+            }, 300);
             
             // Обновление статистики
             quoteCount++;
             quoteCountElement.textContent = quoteCount;
             
+            // Анимация счетчика
+            quoteCountElement.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                quoteCountElement.style.transform = 'scale(1)';
+            }, 300);
+            
             // Случайное добавление "глубоких мыслей"
-            if (Math.random() > 0.7) {
+            if (Math.random() > 0.6) {
                 deepThoughts++;
                 deepThoughtsElement.textContent = deepThoughts;
                 
-                // Анимация
-                deepThoughtsElement.style.transform = 'scale(1.2)';
+                deepThoughtsElement.style.transform = 'scale(1.3)';
                 setTimeout(() => {
                     deepThoughtsElement.style.transform = 'scale(1)';
                 }, 300);
             }
+            
+            showNotification('Новая цитата сгенерирована!', 'success');
         }
         
-        // Показ информации по темам
+        // Показ информации по темам (улучшенный)
         function showThemeContent(theme) {
             const themes = {
                 suffering: {
                     title: "Философия страдания",
-                    content: "Для Достоевского страдание — не наказание, а путь к просветлению. Через страдание герои очищаются, обретают самосознание и приближаются к истине. 'Страдание есть единственная причина сознания' — ключевая мысль писателя."
+                    content: "Для Достоевского страдание — не наказание, а путь к просветлению. Через страдание герои очищаются, обретают самосознание и приближаются к истине. 'Страдание есть единственная причина сознания' — ключевая мысль писателя. В романах 'Преступление и наказание' и 'Братья Карамазовы' эта тема раскрыта особенно глубоко."
                 },
                 redemption: {
                     title: "Искупление и возрождение",
-                    content: "Путь от преступления к искуплению — центральная тема творчества. Раскольников, Дмитрий Карамазов и другие герои через страдание и раскаяние обретают возможность духовного возрождения."
+                    content: "Путь от преступления к искуплению — центральная тема творчества. Раскольников, Дмитрий Карамазов и другие герои через страдание и раскаяние обретают возможность духовного возрождения. Достоевский показывает, что даже самое страшное преступление может быть искуплено через честное признание и принятие страдания."
                 },
                 faith: {
                     title: "Вера и сомнение",
-                    content: "Достоевский исследовал вечную борьбу веры и безверия. Его герои постоянно задаются вопросом о существовании Бога, а их сомнения становятся отправной точкой для глубоких философских размышлений."
+                    content: "Достоевский исследовал вечную борьбу веры и безверия. Его герои постоянно задаются вопросом о существовании Бога, а их сомнения становятся отправной точкой для глубоких философских размышлений. В 'Братьях Карамазовых' тема веры и сомнения достигает своей кульминации в знаменитой поэме о Великом Инквизиторе."
                 },
                 freedom: {
                     title: "Свобода и ответственность",
-                    content: "Писатель предупреждал об опасности абсолютной свободы без нравственных ограничений. Свобода должна быть связана с ответственностью, иначе она превращается в произвол и разрушение."
+                    content: "Писатель предупреждал об опасности абсолютной свободы без нравственных ограничений. Свобода должна быть связана с ответственностью, иначе она превращается в произвол и разрушение. 'Если Бога нет, то всё дозволено' — этот вопрос становится центральным для многих героев Достоевского."
                 }
             };
             
             const themeData = themes[theme];
             if (themeData) {
-                themeContent.innerHTML = `
-                    <h4 style="color: var(--primary-color); margin-bottom: 15px; font-family: 'Playfair Display', serif;">
-                        <i class="fas fa-lightbulb"></i> ${themeData.title}
-                    </h4>
-                    <p style="color: var(--ink-gray); line-height: 1.7;">${themeData.content}</p>
-                `;
-                
-                // Анимация появления
+                // Анимация исчезновения
                 themeContent.style.opacity = '0';
                 themeContent.style.transform = 'translateY(20px)';
                 
                 setTimeout(() => {
-                    themeContent.style.transition = 'opacity 0.5s, transform 0.5s';
-                    themeContent.style.opacity = '1';
-                    themeContent.style.transform = 'translateY(0)';
-                }, 10);
+                    themeContent.innerHTML = `
+                        <h4 style="color: var(--primary-color); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-size: 1.8rem;">
+                            <i class="fas fa-lightbulb"></i> ${themeData.title}
+                        </h4>
+                        <p style="color: var(--ink-gray); line-height: 1.8; font-size: 1.2rem;">${themeData.content}</p>
+                    `;
+                    
+                    // Анимация появления
+                    setTimeout(() => {
+                        themeContent.style.transition = 'all 0.5s ease';
+                        themeContent.style.opacity = '1';
+                        themeContent.style.transform = 'translateY(0)';
+                    }, 50);
+                }, 300);
+                
+                deepThoughts++;
+                deepThoughtsElement.textContent = deepThoughts;
+                deepThoughtsElement.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    deepThoughtsElement.style.transform = 'scale(1)';
+                }, 300);
+                
+                showNotification(`Тема "${themeData.title}" исследована`, 'success');
             }
         }
         
-        // Показ цитат по роману
+        // Показ цитат по роману (улучшенный)
         function showNovelQuotes(novel) {
             const quotes = novelQuotes[novel];
             if (quotes) {
-                quotesContainer.innerHTML = '';
+                // Очистка контейнера с анимацией
+                quotesContainer.style.opacity = '0';
                 
-                quotes.forEach((quote, index) => {
-                    const quoteElement = document.createElement('div');
-                    quoteElement.style.padding = '15px';
-                    quoteElement.style.marginBottom = '15px';
-                    quoteElement.style.background = 'rgba(139, 69, 19, 0.1)';
-                    quoteElement.style.borderRadius = '5px';
-                    quoteElement.style.borderLeft = '3px solid var(--primary-color)';
-                    quoteElement.innerHTML = `
-                        <p style="color: var(--ink-color); font-style: italic; margin-bottom: 10px;">"${quote}"</p>
-                        <small style="color: var(--ink-gray);">Цитата ${index + 1}</small>
-                    `;
+                setTimeout(() => {
+                    quotesContainer.innerHTML = '';
                     
-                    quotesContainer.appendChild(quoteElement);
-                });
+                    quotes.forEach((quote, index) => {
+                        const quoteElement = document.createElement('div');
+                        quoteElement.style.padding = '20px';
+                        quoteElement.style.marginBottom = '20px';
+                        quoteElement.style.background = 'rgba(139, 69, 19, 0.1)';
+                        quoteElement.style.borderRadius = '8px';
+                        quoteElement.style.borderLeft = '4px solid var(--primary-color)';
+                        quoteElement.style.opacity = '0';
+                        quoteElement.style.transform = 'translateX(-20px)';
+                        quoteElement.innerHTML = `
+                            <p style="color: var(--ink-color); font-style: italic; margin-bottom: 15px; font-size: 1.2rem; line-height: 1.6;">"${quote}"</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <small style="color: var(--ink-gray);">Цитата ${index + 1}</small>
+                                <button class="copy-quote-btn" data-quote="${quote}" style="background: rgba(139, 69, 19, 0.2); border: none; color: var(--primary-color); padding: 5px 15px; border-radius: 4px; cursor: pointer; transition: all 0.3s;">
+                                    <i class="fas fa-copy"></i> Копировать
+                                </button>
+                            </div>
+                        `;
+                        
+                        quotesContainer.appendChild(quoteElement);
+                        
+                        // Анимация появления
+                        setTimeout(() => {
+                            quoteElement.style.transition = 'all 0.5s ease';
+                            quoteElement.style.opacity = '1';
+                            quoteElement.style.transform = 'translateX(0)';
+                        }, index * 100);
+                    });
+                    
+                    // Анимация контейнера
+                    setTimeout(() => {
+                        quotesContainer.style.transition = 'opacity 0.5s';
+                        quotesContainer.style.opacity = '1';
+                    }, 50);
+                    
+                    // Добавление обработчиков для кнопок копирования
+                    setTimeout(() => {
+                        document.querySelectorAll('.copy-quote-btn').forEach(btn => {
+                            btn.addEventListener('click', function() {
+                                const quote = this.getAttribute('data-quote');
+                                navigator.clipboard.writeText(quote).then(() => {
+                                    const originalHTML = this.innerHTML;
+                                    this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                                    this.style.background = 'var(--primary-color)';
+                                    this.style.color = 'var(--paper-bg)';
+                                    
+                                    setTimeout(() => {
+                                        this.innerHTML = originalHTML;
+                                        this.style.background = 'rgba(139, 69, 19, 0.2)';
+                                        this.style.color = 'var(--primary-color)';
+                                    }, 2000);
+                                    
+                                    showNotification('Цитата скопирована в буфер обмена!', 'success');
+                                });
+                            });
+                        });
+                    }, 100);
+                    
+                }, 300);
             }
         }
         
-        // Переключение режима чтения
+        // Загрузка фото
+        function loadPhoto() {
+            const url = photoUrlInput.value.trim();
+            
+            if (!url) {
+                showNotification('Введите URL изображения', 'error');
+                return;
+            }
+            
+            // Показываем загрузку
+            portraitPlaceholder.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size: 3rem;"></i><div style="margin-top: 20px;">Загрузка изображения...</div>';
+            
+            // Создаем временное изображение для проверки
+            const testImg = new Image();
+            testImg.onload = function() {
+                // Успешная загрузка
+                portraitImg.src = url;
+                portraitImg.style.display = 'block';
+                portraitPlaceholder.style.display = 'none';
+                
+                // Сохраняем в localStorage
+                localStorage.setItem('dostoevskyPhoto', url);
+                
+                photoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                showNotification('Портрет успешно загружен!', 'success');
+            };
+            
+            testImg.onerror = function() {
+                // Ошибка загрузки
+                portraitPlaceholder.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #e06c75;"></i>
+                    <div style="margin-top: 20px;">Ошибка загрузки изображения</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Проверьте URL и попробуйте снова</p>
+                    <button class="upload-btn" id="uploadPhotoBtn" style="margin-top: 20px;">
+                        <i class="fas fa-camera"></i> Попробовать снова
+                    </button>
+                `;
+                
+                // Перепривязываем обработчик
+                setTimeout(() => {
+                    document.getElementById('uploadPhotoBtn').addEventListener('click', () => {
+                        photoModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                }, 100);
+                
+                showNotification('Не удалось загрузить изображение', 'error');
+            };
+            
+            testImg.src = url;
+        }
+        
+        // Сброс фото
+        function resetPhoto() {
+            portraitImg.style.display = 'none';
+            portraitPlaceholder.style.display = 'flex';
+            portraitPlaceholder.innerHTML = `
+                <i class="fas fa-portrait"></i>
+                <div>Портрет Ф.М. Достоевского</div>
+                <p>Нажмите для загрузки фото</p>
+                <button class="upload-btn" id="uploadPhotoBtn">
+                    <i class="fas fa-camera"></i> Загрузить фото
+                </button>
+            `;
+            
+            // Удаляем из localStorage
+            localStorage.removeItem('dostoevskyPhoto');
+            
+            photoModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Перепривязываем обработчик
+            setTimeout(() => {
+                document.getElementById('uploadPhotoBtn').addEventListener('click', () => {
+                    photoModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }, 100);
+            
+            showNotification('Портрет сброшен', 'info');
+        }
+        
+        // Переключение режима чтения (улучшенное)
         function toggleReadingMode() {
             isReadingMode = !isReadingMode;
             
             if (isReadingMode) {
-                document.documentElement.style.setProperty('--paper-bg', '#fffaf0');
-                document.documentElement.style.setProperty('--paper-bg-light', '#fffff0');
-                document.documentElement.style.setProperty('--ink-color', '#2c1810');
-                readingModeBtn.innerHTML = '<i class="fas fa-moon"></i>';
-                readingModeBtn.style.background = 'var(--primary-color)';
-                readingModeBtn.style.color = 'var(--paper-bg)';
+                // Ночной режим
+                document.documentElement.style.setProperty('--paper-bg', '#1a1208');
+                document.documentElement.style.setProperty('--paper-bg-light', '#2a1a0f');
+                document.documentElement.style.setProperty('--ink-color', '#e8d8c8');
+                document.documentElement.style.setProperty('--ink-gray', '#b8a898');
                 
-                // Уведомление
-                showNotification('Ночной режим чтения включен');
+                readingModeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                readingModeBtn.style.background = 'var(--accent-3)';
+                readingModeBtn.style.color = 'var(--dark-bg)';
+                
+                showNotification('Ночной режим чтения включен', 'success');
             } else {
+                // Дневной режим
                 document.documentElement.style.setProperty('--paper-bg', '#f5e9d8');
                 document.documentElement.style.setProperty('--paper-bg-light', '#fffaf0');
                 document.documentElement.style.setProperty('--ink-color', '#2c1810');
+                document.documentElement.style.setProperty('--ink-gray', '#5d4037');
+                
                 readingModeBtn.innerHTML = '<i class="fas fa-book-reader"></i>';
                 readingModeBtn.style.background = 'rgba(26, 15, 10, 0.9)';
                 readingModeBtn.style.color = 'var(--accent-3)';
                 
-                showNotification('Дневной режим включен');
+                showNotification('Дневной режим включен', 'success');
             }
         }
         
-        // Показ уведомления
-        function showNotification(message) {
-            // Удаляем старое уведомление, если есть
-            const oldNotification = document.querySelector('.notification');
-            if (oldNotification) {
-                oldNotification.remove();
-            }
-            
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.textContent = message;
-            notification.style.position = 'fixed';
-            notification.style.top = '100px';
-            notification.style.right = '30px';
-            notification.style.background = 'var(--primary-color)';
-            notification.style.color = 'var(--paper-bg)';
-            notification.style.padding = '15px 25px';
-            notification.style.borderRadius = '5px';
-            notification.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
-            notification.style.zIndex = '2000';
-            notification.style.transform = 'translateX(100px)';
-            notification.style.opacity = '0';
-            notification.style.transition = 'transform 0.5s, opacity 0.5s';
-            
-            document.body.appendChild(notification);
-            
-            // Анимация появления
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-                notification.style.opacity = '1';
-            }, 10);
-            
-            // Автоматическое скрытие
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100px)';
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.remove();
-                    }
-                }, 500);
-            }, 3000);
-        }
-        
-        // Прокрутка к секции
+        // Прокрутка к секции (улучшенная)
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
-                section.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const sectionPosition = section.offsetTop - navbarHeight - 20;
+                
+                window.scrollTo({
+                    top: sectionPosition,
+                    behavior: 'smooth'
                 });
+                
+                // Подсветка активной ссылки
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
                 
                 // Закрытие мобильного меню
                 if (window.innerWidth <= 992) {
                     navLinks.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 }
+                
+                showNotification(`Переход к разделу: ${sectionId === 'about' ? 'Биография' : sectionId === 'novels' ? 'Романы' : sectionId === 'philosophy' ? 'Философия' : sectionId === 'timeline' ? 'Хронология' : 'Лаборатория'}`, 'info');
             }
         }
         
-        // Инициализация навигации
+        // Инициализация навигации (улучшенная)
         function initNavigation() {
             window.addEventListener('scroll', () => {
                 if (window.pageYOffset > 100) {
@@ -2041,12 +3216,39 @@
                 } else {
                     scrollTopBtn.classList.remove('active');
                 }
+                
+                // Подсветка активной секции
+                const sections = document.querySelectorAll('.paper-section, .interactive-lab, .contact-section');
+                const navHeight = navbar.offsetHeight;
+                
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - navHeight - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
             });
             
             mobileMenuBtn.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
                 mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
                     '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                
+                if (navLinks.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
             });
             
             // Закрытие меню при клике на ссылку
@@ -2059,21 +3261,24 @@
             });
         }
         
-        // Инициализация прокрутки наверх
+        // Инициализация прокрутки наверх (улучшенная)
         function initScrollTop() {
             scrollTopBtn.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
+                showNotification('Прокрутка наверх', 'info');
             });
         }
         
-        // Инициализация модального окна
-        function initModal() {
+        // Инициализация модальных окон (улучшенная)
+        function initModals() {
+            // Цитаты
             showQuotesBtn.addEventListener('click', () => {
                 quotesModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                showNotification('Открыта сокровищница цитат', 'info');
             });
             
             modalClose.addEventListener('click', () => {
@@ -2088,9 +3293,37 @@
                     document.body.style.overflow = 'auto';
                 }
             });
+            
+            // Загрузка фото
+            uploadPhotoBtn.addEventListener('click', () => {
+                photoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            photoModalClose.addEventListener('click', () => {
+                photoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            photoModal.addEventListener('click', (e) => {
+                if (e.target === photoModal) {
+                    photoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            loadPhotoBtn.addEventListener('click', loadPhoto);
+            resetPhotoBtn.addEventListener('click', resetPhoto);
+            
+            // Загрузка фото по Enter
+            photoUrlInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    loadPhoto();
+                }
+            });
         }
         
-        // Инициализация иконок рукописи
+        // Инициализация иконок рукописи (улучшенная)
         function initManuscriptIcons() {
             manuscriptIcons.forEach((icon, index) => {
                 icon.addEventListener('click', () => {
@@ -2100,30 +3333,65 @@
                         navigator.clipboard.writeText(manuscriptText).then(() => {
                             const originalIcon = icon.className;
                             icon.className = 'fas fa-check';
+                            icon.style.background = 'var(--primary-color)';
+                            icon.style.color = 'var(--paper-bg)';
+                            
                             setTimeout(() => {
                                 icon.className = originalIcon;
+                                icon.style.background = 'rgba(139, 69, 19, 0.15)';
+                                icon.style.color = 'var(--primary-color)';
                             }, 2000);
-                            showNotification('Текст скопирован');
+                            
+                            showNotification('Текст рукописи скопирован', 'success');
                         });
                     } else if (index === 1) {
                         // Закладка
-                        showNotification('Закладка добавлена');
+                        const originalIcon = icon.className;
+                        icon.className = 'fas fa-bookmark';
+                        icon.style.background = 'var(--accent-3)';
+                        icon.style.color = 'var(--paper-bg)';
+                        
+                        setTimeout(() => {
+                            icon.className = originalIcon;
+                            icon.style.background = 'rgba(139, 69, 19, 0.15)';
+                            icon.style.color = 'var(--primary-color)';
+                        }, 1000);
+                        
+                        showNotification('Добавлено в закладки', 'success');
                     } else if (index === 2) {
                         // Развернуть
-                        document.querySelector('.manuscript-content').classList.toggle('expanded');
-                        if (document.querySelector('.manuscript-content.expanded')) {
-                            document.querySelector('.manuscript-content').style.maxHeight = 'none';
-                            showNotification('Режим полноэкранного чтения');
+                        const manuscriptContent = document.querySelector('.manuscript-content');
+                        manuscriptContent.classList.toggle('expanded');
+                        
+                        if (manuscriptContent.classList.contains('expanded')) {
+                            manuscriptContent.style.maxHeight = '80vh';
+                            icon.className = 'fas fa-compress-alt';
+                            showNotification('Режим полноэкранного чтения', 'info');
                         } else {
-                            document.querySelector('.manuscript-content').style.maxHeight = '400px';
-                            showNotification('Обычный режим');
+                            manuscriptContent.style.maxHeight = '450px';
+                            icon.className = 'fas fa-expand-alt';
+                            showNotification('Обычный режим', 'info');
                         }
+                    } else if (index === 3) {
+                        // Озвучить (симуляция)
+                        const originalIcon = icon.className;
+                        icon.className = 'fas fa-volume-up';
+                        icon.style.background = 'var(--accent-2)';
+                        icon.style.color = 'var(--paper-bg)';
+                        
+                        showNotification('Озвучивание текста (симуляция)', 'info');
+                        
+                        setTimeout(() => {
+                            icon.className = originalIcon;
+                            icon.style.background = 'rgba(139, 69, 19, 0.15)';
+                            icon.style.color = 'var(--primary-color)';
+                        }, 2000);
                     }
                 });
             });
         }
         
-        // Инициализация анимаций при прокрутке
+        // Инициализация анимаций при прокрутке (улучшенная)
         function initScrollAnimations() {
             const observerOptions = {
                 threshold: 0.1,
@@ -2135,11 +3403,16 @@
                     if (entry.isIntersecting) {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
+                        
+                        // Для timeline items
+                        if (entry.target.classList.contains('timeline-item')) {
+                            entry.target.classList.add('visible');
+                        }
                     }
                 });
             }, observerOptions);
             
-            document.querySelectorAll('.novel-card, .philosophy-card, .timeline-content').forEach(el => {
+            document.querySelectorAll('.novel-card, .philosophy-card, .timeline-item, .stat-box').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(40px)';
                 el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
@@ -2147,15 +3420,31 @@
             });
         }
         
-        // Основная инициализация
+        // Загрузка сохраненного фото из localStorage
+        function loadSavedPhoto() {
+            const savedPhoto = localStorage.getItem('dostoevskyPhoto');
+            if (savedPhoto) {
+                const testImg = new Image();
+                testImg.onload = function() {
+                    portraitImg.src = savedPhoto;
+                    portraitImg.style.display = 'block';
+                    portraitPlaceholder.style.display = 'none';
+                };
+                testImg.src = savedPhoto;
+            }
+        }
+        
+        // Основная инициализация (улучшенная)
         function init() {
             createFloatingLetters();
+            createFloatingBooks();
             typeWriter();
             initNavigation();
             initScrollTop();
-            initModal();
+            initModals();
             initManuscriptIcons();
             initScrollAnimations();
+            loadSavedPhoto();
             
             // Обновление времени каждую минуту
             setInterval(updateReadingTime, 60000);
@@ -2171,14 +3460,16 @@
             exploreNovelsBtn.addEventListener('click', () => scrollToSection('novels'));
             startJourneyBtn.addEventListener('click', () => scrollToSection('about'));
             showTimelineBtn.addEventListener('click', () => scrollToSection('timeline'));
+            readOnlineBtn.addEventListener('click', () => {
+                window.open('https://ilibrary.ru/author/dostoevsky/index.html', '_blank');
+                showNotification('Открыта библиотека произведений Достоевского', 'info');
+            });
             
             // Обработчики тем
             themeButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const theme = btn.getAttribute('data-theme');
                     showThemeContent(theme);
-                    deepThoughts++;
-                    deepThoughtsElement.textContent = deepThoughts;
                 });
             });
             
@@ -2187,44 +3478,112 @@
                 btn.addEventListener('click', () => {
                     const novel = btn.getAttribute('data-quote');
                     showNovelQuotes(novel);
+                    
+                    // Подсветка активной кнопки
+                    quotesSelector.forEach(b => {
+                        b.style.background = 'rgba(139, 69, 19, 0.25)';
+                        b.style.borderColor = 'var(--primary-color)';
+                    });
+                    btn.style.background = 'linear-gradient(45deg, var(--primary-color), var(--accent-2))';
+                    btn.style.borderColor = 'transparent';
+                    btn.style.color = 'var(--paper-bg)';
+                    
+                    const novelNames = {
+                        crime: 'Преступление и наказание',
+                        idiot: 'Идиот',
+                        brothers: 'Братья Карамазовы',
+                        demons: 'Бесы'
+                    };
+                    
+                    showNotification(`Цитаты из романа: "${novelNames[novel]}"`, 'info');
                 });
             });
             
-            // Добавление стилей для уведомлений и расширенного режима
+            // Клик по портрету для увеличения
+            portraitFrame.addEventListener('click', () => {
+                if (portraitImg.style.display === 'block') {
+                    // Создаем модальное окно для увеличенного фото
+                    const zoomModal = document.createElement('div');
+                    zoomModal.className = 'modal active';
+                    zoomModal.innerHTML = `
+                        <div class="modal-content" style="background: transparent; border: none; box-shadow: none; max-width: 90vw; padding: 0;">
+                            <button class="modal-close" id="zoomModalClose" style="background: rgba(26, 15, 10, 0.8); color: var(--accent-3);">&times;</button>
+                            <img src="${portraitImg.src}" alt="Фёдор Достоевский" style="width: 100%; height: auto; max-height: 85vh; border-radius: 10px; box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);">
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(zoomModal);
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Закрытие увеличенного фото
+                    document.getElementById('zoomModalClose').addEventListener('click', () => {
+                        document.body.removeChild(zoomModal);
+                        document.body.style.overflow = 'auto';
+                    });
+                    
+                    zoomModal.addEventListener('click', (e) => {
+                        if (e.target === zoomModal) {
+                            document.body.removeChild(zoomModal);
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                }
+            });
+            
+            // Добавление стилей для уведомлений
             const style = document.createElement('style');
             style.textContent = `
                 .manuscript-content.expanded {
                     position: fixed;
-                    top: 50px;
-                    left: 50px;
-                    right: 50px;
-                    bottom: 50px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 90vw;
+                    height: 90vh;
                     z-index: 2000;
-                    max-height: none !important;
                     background: var(--paper-bg);
-                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+                    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+                    border: 3px solid var(--primary-color);
                 }
                 
                 .theme-btn.active {
-                    background: var(--primary-color);
-                    color: var(--paper-bg);
+                    background: linear-gradient(45deg, var(--primary-color), var(--accent-2)) !important;
+                    border-color: transparent !important;
+                    color: var(--paper-bg) !important;
                 }
                 
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
+                }
+                
+                .pulse {
+                    animation: pulse 2s infinite;
                 }
             `;
             document.head.appendChild(style);
             
             // Начальные уведомления
             setTimeout(() => {
-                showNotification('Добро пожаловать в мир Достоевского');
-            }, 1000);
+                showNotification('Добро пожаловать в мир Ф.М. Достоевского!', 'success');
+            }, 1500);
             
             setTimeout(() => {
-                showNotification('Исследуйте философские концепции через интерактивные элементы');
+                showNotification('Нажмите на портрет для загрузки изображения', 'info');
             }, 4000);
+            
+            setTimeout(() => {
+                showNotification('Исследуйте романы с активными ссылками для чтения', 'info');
+            }, 7000);
+            
+            // Анимация приветствия
+            setTimeout(() => {
+                document.querySelector('.portrait-frame').classList.add('pulse');
+                setTimeout(() => {
+                    document.querySelector('.portrait-frame').classList.remove('pulse');
+                }, 2000);
+            }, 1000);
         }
         
         document.addEventListener('DOMContentLoaded', init);
