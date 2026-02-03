@@ -2661,7 +2661,7 @@
                 </a>
                 
                 <!-- Идиот -->
-                <a href="https://ilibrary.ru/text/71/index.html" class="novel-card" target="_blank">
+                <a href="https://ilibrary.ru/text/94/p.1/index.html" class="novel-card" target="_blank">
                     <div class="book-link">
                         <i class="fas fa-external-link-alt"></i>
                     </div>
@@ -2681,7 +2681,7 @@
                 </a>
                 
                 <!-- Братья Карамазовы -->
-                <a href="https://ilibrary.ru/text/77/index.html" class="novel-card" target="_blank">
+                <a href="https://ilibrary.ru/text/1199/p.1/index.html" class="novel-card" target="_blank">
                     <div class="book-link">
                         <i class="fas fa-external-link-alt"></i>
                     </div>
@@ -2701,7 +2701,7 @@
                 </a>
                 
                 <!-- Бесы -->
-                <a href="https://ilibrary.ru/text/72/index.html" class="novel-card" target="_blank">
+                <a href="https://ilibrary.ru/text/1544/p.1/index.html" class="novel-card" target="_blank">
                     <div class="book-link">
                         <i class="fas fa-external-link-alt"></i>
                     </div>
@@ -2723,7 +2723,7 @@
             
             <!-- Кнопка для просмотра всех произведений -->
             <div style="text-align: center; margin-top: 70px;">
-                <a href="https://ilibrary.ru/author/dostoevsky/index.html" class="contact-btn" target="_blank" style="display: inline-block;">
+                <a href="https://ilibrary.ru/author/dostoevski/index.html" class="contact-btn" target="_blank" style="display: inline-block;">
                     <i class="fas fa-books"></i> Все произведения Достоевского
                 </a>
             </div>
@@ -2901,25 +2901,24 @@
                 <a href="https://ru.wikipedia.org/wiki/Достоевский,_Фёдор_Михайлович" class="social-link" title="Википедия" target="_blank">
                     <i class="fab fa-wikipedia-w"></i>
                 </a>
-                <a href="https://ilibrary.ru/author/dostoevsky/index.html" class="social-link" title="Читать онлайн" target="_blank">
+                <a href="https://ilibrary.ru/author/dostoevski/index.html" class="social-link" title="Читать онлайн" target="_blank">
                     <i class="fas fa-book"></i>
                 </a>
                 <a href="https://www.culture.ru/persons/8213/fedor-dostoevskii" class="social-link" title="Культура.РФ" target="_blank">
                     <i class="fas fa-landmark"></i>
                 </a>
-                <a href="https://rvb.ru/dostoevsky/" class="social-link" title="Академическое собрание" target="_blank">
+                <a href="https://traumlibrary.ru/page/dostoevsky.html" class="social-link" title="Академическое собрание" target="_blank">
                     <i class="fas fa-university"></i>
                 </a>
-                <a href="https://www.gutenberg.org/ebooks/author/689" class="social-link" title="Project Gutenberg" target="_blank">
-                    <i class="fab fa-gutenberg"></i>
-                </a>
-                <a href="https://www.youtube.com/results?search_query=достоевский+лекции" class="social-link" title="Лекции на YouTube" target="_blank">
+                
+                <a href="https://rutube.ru/search/?query=%D0%BB%D0%B5%D0%BA%D1%86%D0%B8%D1%8F+%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B5%D0%B2%D1%81%D0%BA%D0%B8%D0%B9" class="social-link" title="Лекции на RUTUBE" target="_blank">
                     <i class="fab fa-youtube"></i>
                 </a>
             </div>
             <p>Вся страница создана с глубоким уважением к творчеству Ф.М. Достоевского</p>
             <p>Дизайн вдохновлён атмосферой XIX века и глубиной мысли великого писателя</p>
-            <p class="copyright">&copy; <span class="year">2026</span> | Исследование творчества Ф.М. Достоевского. Все цитаты принадлежат автору.</p>
+            <p class="copyright">&copy; <span class="year">2026</span> | Исследование творчества Ф.М. Достоевского. Все цитаты принадлежат автору.
+            Выполнил проект студент группы ИС1-24 Голосов Даниил Алексеевич</p>
         </footer>
     </div>
 
