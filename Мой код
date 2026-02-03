@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фёдор Достоевский - Мир великого писателя</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Old+Standard+TT:wght@400;700&family=Playfair+Display:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8b4513;
+            --secondary-color: #654321;
+            --accent-1: #a0522d;
+            --accent-2: #d2691e;
+            --accent-3: #b8860b;
+            --dark-bg: #1a0f0a;
+            --paper-bg: #f5e9d8;
+            --paper-bg-light: #fffaf0;
+            --ink-color: #2c1810;
+            --ink-gray: #5d4037;
+            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --old-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--ink-color);
+            font-family: 'Crimson Text', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b4513' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            position: relative;
+        }
+        
+        /* Эффект старинной бумаги */
+        .paper-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(101, 67, 33, 0.1) 0%, transparent 25%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Анимированные чернильные кляксы */
+        .ink-blots {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .ink-blot {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.05;
+            filter: blur(30px);
+        }
+        
+        .blot-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation: floatInk 25s infinite ease-in-out;
+        }
+        
+        .blot-2 {
+            width: 400px;
+            height: 400px;
+            bottom: 15%;
+            right: 10%;
+            animation: floatInk 30s infinite ease-in-out reverse;
+        }
+        
+        .blot-3 {
+            width: 250px;
+            height: 250px;
+            top: 40%;
+            right: 20%;
+            animation: floatInk 20s infinite ease-in-out;
+        }
+        
+        @keyframes floatInk {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Летящие буквы и слова */
+        .floating-letters {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-letter {
+            position: absolute;
+            font-family: 'Old Standard TT', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.1;
+            animation: floatLetter 20s linear infinite;
+        }
+        
+        @keyframes floatLetter {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Навигация в стиле старой книги */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(26, 15, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.3);
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--paper-bg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        
+        .logo i {
+            color: var(--accent-3);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-link {
+            color: var(--paper-bg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 10px 0;
+            transition: var(--transition);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-3);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-3);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent-3);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* Заголовок с портретом */
+        header {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .portrait-frame {
+            width: 200px;
+            height: 250px;
+            margin: 0 auto 40px;
+            border: 8px solid var(--primary-color);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        .portrait {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #2c1810, #5d4037);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: var(--paper-bg);
+            opacity: 0.9;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--paper-bg);
+            letter-spacing: 1px;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-3));
+            border-radius: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            color: var(--accent-3);
+            margin-bottom: 50px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.8rem;
+            background-color: var(--accent-3);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Кнопки в стиле старинных книжных закладок */
+        .quick-access {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .bookmark-btn {
+            padding: 15px 30px;
+            background: rgba(139, 69, 19, 0.2);
+            border: 2px solid var(--primary-color);
+            border-radius: 0 10px 10px 0;
+            color: var(--paper-bg);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .bookmark-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-2));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+        
+        .bookmark-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .bookmark-btn:hover {
+            color: var(--paper-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Основной контент на фоне бумаги */
+        .paper-section {
+            background-color: var(--paper-bg);
+            border-radius: 5px;
+            padding: 60px;
+            margin-bottom: 80px;
+            position: relative;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 0 100px rgba(139, 69, 19, 0.05);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+        
+        .paper-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, transparent 79px, rgba(139, 69, 19, 0.1) 79px, transparent 80px),
+                linear-gradient(var(--paper-bg) 1.1em, rgba(139, 69, 19, 0.1) 1.1em, var(--paper-bg) 1.2em);
+            background-size: 100% 1.2em;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .paper-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-3));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+        
+        /* Введение */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+        
+        .intro-text {
+            font-size: 1.3rem;
+            color: var(--ink-color);
+            line-height: 1.9;
+        }
+        
+        .intro-text p {
+            margin-bottom: 30px;
+            text-indent: 2em;
+            position: relative;
+        }
+        
+        .quote-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            line-height: 1;
+        }
+        
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(139, 69, 19, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        
+        .highlight:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Витрина рукописи */
+        .manuscript-display {
+            background: var(--paper-bg-light);
+            border-radius: 5px;
+            padding: 40px;
+            box-shadow: 
+                inset 0 0 20px rgba(0, 0, 0, 0.1),
+                0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .manuscript-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(139, 69, 19, 0.05), transparent);
+            z-index: 0;
+        }
+        
+        .manuscript-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+        }
+        
+        .manuscript-title {
+            font-family: 'Old Standard TT', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .manuscript-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .manuscript-icons i {
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 69, 19, 0.1);
+        }
+        
+        .manuscript-icons i:hover {
+            color: var(--accent-2);
+            transform: translateY(-5px);
+            background: rgba(139, 69, 19, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .manuscript-content {
+            font-family: 'Old Standard TT', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(139, 69, 19, 0.1);
+            position: relative;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .manuscript-line {
+            display: block;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .manuscript-line::before {
+            content: attr(data-line);
+            position: absolute;
+            left: 0;
+            color: var(--ink-gray);
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: right;
+        }
+        
+        /* Карточки романов */
+        .novels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .novel-card {
+            background: var(--paper-bg-light);
+            border-radius: 5px;
+            padding: 40px 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .novel-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(139, 69, 19, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .novel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(139, 69, 19, 0.05), transparent);
+        }
+        
+        .novel-icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .novel-card:hover .novel-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .novel-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .novel-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .novel-card p {
+            color: var(--ink-gray);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        .novel-stats {
+            display: flex;
+            justify-content: space-between;
+            color: var(--ink-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(139, 69, 19, 0.2);
+            padding-top: 15px;
+        }
+        
+        /* Хронологическая шкала */
+        .timeline {
+            position: relative;
+            margin: 80px 0;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-3));
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            width: 45%;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+            text-align: right;
+            padding-right: 60px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+            padding-left: 60px;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: var(--paper-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -30px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -30px;
+        }
+        
+        .timeline-content {
+            background: var(--paper-bg-light);
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+        
+        .timeline-content h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Философские концепции */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .philosophy-card {
+            background: var(--paper-bg-light);
+            border-radius: 5px;
+            padding: 30px;
+            transition: var(--transition);
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .philosophy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-left-color: var(--accent-3);
+        }
+        
+        .philosophy-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .philosophy-card h4 i {
+            color: var(--accent-3);
+        }
+        
+        /* Интерактивный раздел */
+        .interactive-lab {
+            text-align: center;
+            margin: 100px 0;
+            padding: 70px;
+            background: var(--paper-bg);
+            border-radius: 5px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 0 100px rgba(139, 69, 19, 0.05);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+        
+        .interactive-lab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.1) 0%, transparent 50%);
+        }
+        
+        .interactive-lab h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+        
+        .interactive-lab p {
+            font-size: 1.3rem;
+            color: var(--ink-gray);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        
+        .quote-generator {
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--paper-bg-light);
+            border-radius: 5px;
+            border: 2px dashed var(--primary-color);
+        }
+        
+        .generated-quote {
+            font-size: 1.5rem;
+            color: var(--ink-color);
+            font-style: italic;
+            margin: 30px 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(139, 69, 19, 0.05);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        #generateQuote {
+            margin: 20px 0 40px;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-2));
+            border: none;
+            color: var(--paper-bg);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        #generateQuote:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 30px rgba(139, 69, 19, 0.3);
+        }
+        
+        .stats-display {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            width: 120px;
+            height: 120px;
+            background: var(--paper-bg-light);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--primary-color);
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: 'Old Standard TT', serif;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--ink-gray);
+            margin-top: 10px;
+        }
+        
+        /* Контакты */
+        .contact-section {
+            text-align: center;
+            padding: 80px 0;
+            background: var(--paper-bg);
+            border-radius: 5px;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+        
+        .contact-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 35px;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-section p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            color: var(--ink-gray);
+            position: relative;
+            z-index: 1;
+            line-height: 1.9;
+        }
+        
+        .contact-btn {
+            position: relative;
+            z-index: 1;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-block;
+            overflow: hidden;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-btn:hover {
+            background-color: rgba(139, 69, 19, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 30px rgba(139, 69, 19, 0.2);
+        }
+        
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 60px 0 40px;
+            color: var(--paper-bg);
+            border-top: 1px solid rgba(139, 69, 19, 0.3);
+            position: relative;
+            background: rgba(26, 15, 10, 0.9);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            color: var(--paper-bg);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid rgba(139, 69, 19, 0.5);
+        }
+        
+        .social-link:hover {
+            color: var(--accent-3);
+            transform: translateY(-10px);
+            background: rgba(139, 69, 19, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        footer p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .year {
+            color: var(--accent-3);
+            font-weight: 700;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+        
+        /* Кнопка прокрутки наверх */
+        .scroll-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--paper-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+        
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-10px);
+            background: var(--accent-2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Переключатель режима чтения */
+        .reading-mode {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(26, 15, 10, 0.9);
+            color: var(--accent-3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(139, 69, 19, 0.5);
+        }
+        
+        .reading-mode:hover {
+            transform: rotate(180deg) scale(1.1);
+            background: var(--primary-color);
+            color: var(--paper-bg);
+        }
+        
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--paper-bg);
+            border-radius: 5px;
+            padding: 50px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.2);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 15, 10, 0.98);
+                padding: 30px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .paper-section {
+                padding: 40px 30px;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            .novels-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+                text-align: left !important;
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-year,
+            .timeline-item:nth-child(even) .timeline-year {
+                left: -80px;
+                right: auto;
+            }
+            
+            .interactive-lab {
+                padding: 40px 30px;
+            }
+            
+            .contact-section {
+                padding: 60px 30px;
+            }
+            
+            .reading-mode, .scroll-top {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .reading-mode {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 150px 0 60px;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .portrait-frame {
+                width: 150px;
+                height: 200px;
+            }
+            
+            .portrait {
+                font-size: 4rem;
+            }
+            
+            .quick-access {
+                gap: 15px;
+            }
+            
+            .bookmark-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .intro-text {
+                font-size: 1.15rem;
+            }
+            
+            .interactive-lab h3 {
+                font-size: 2rem;
+            }
+            
+            .interactive-lab p {
+                font-size: 1.15rem;
+            }
+            
+            .contact-section h2 {
+                font-size: 2.3rem;
+            }
+            
+            .contact-section p {
+                font-size: 1.15rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .paper-section {
+                padding: 30px 20px;
+            }
+            
+            .manuscript-display {
+                padding: 25px;
+            }
+            
+            .novel-card {
+                padding: 30px 20px;
+            }
+            
+            .stats-display {
+                gap: 15px;
+            }
+            
+            .stat-box {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .stat-value {
+                font-size: 1.8rem;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон с эффектом старой бумаги -->
+    <div class="paper-texture"></div>
+    
+    <!-- Чернильные кляксы -->
+    <div class="ink-blots">
+        <div class="ink-blot blot-1"></div>
+        <div class="ink-blot blot-2"></div>
+        <div class="ink-blot blot-3"></div>
+    </div>
+    
+    <!-- Летящие буквы -->
+    <div class="floating-letters" id="floatingLetters"></div>
+    
+    <!-- Навигация -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>Достоевский</span>
+            </a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="nav-link">Биография</a>
+                <a href="#novels" class="nav-link">Романы</a>
+                <a href="#philosophy" class="nav-link">Философия</a>
+                <a href="#timeline" class="nav-link">Хронология</a>
+                <a href="#lab" class="nav-link">Лаборатория</a>
+                <button class="bookmark-btn" id="showQuotes">
+                    <i class="fas fa-quote-right"></i> Цитаты
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Переключатель режима чтения -->
+    <div class="reading-mode" id="readingMode">
+        <i class="fas fa-book-reader"></i>
+    </div>
+    
+    <!-- Модальное окно с цитатами -->
+    <div class="modal" id="quotesModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 style="color: var(--primary-color); margin-bottom: 20px; font-family: 'Playfair Display', serif;">Сокровищница цитат</h2>
+            <p style="color: var(--ink-gray); margin-bottom: 30px;">Выберите роман для просмотра ключевых цитат:</p>
+            
+            <div class="quotes-selector">
+                <button class="bookmark-btn" data-quote="crime">Преступление и наказание</button>
+                <button class="bookmark-btn" data-quote="idiot">Идиот</button>
+                <button class="bookmark-btn" data-quote="brothers">Братья Карамазовы</button>
+                <button class="bookmark-btn" data-quote="demons">Бесы</button>
+            </div>
+            
+            <div id="quotesContainer" style="margin-top: 30px; max-height: 300px; overflow-y: auto; padding: 20px; background: rgba(139, 69, 19, 0.05); border-radius: 5px;">
+                <p style="color: var(--ink-gray); font-style: italic;">Выберите роман для отображения цитат...</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Заголовок -->
+        <header>
+            <div class="header-content">
+                <div class="portrait-frame">
+                    <div class="portrait">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                </div>
+                
+                <h1>Фёдор Михайлович Достоевский</h1>
+                <p class="tagline" id="typedText"></p>
+                <div class="typewriter-cursor" id="cursor"></div>
+                
+                <div class="quick-access">
+                    <button class="bookmark-btn" id="exploreNovels">
+                        <i class="fas fa-book"></i> Исследовать романы
+                    </button>
+                    <button class="bookmark-btn" id="startJourney">
+                        <i class="fas fa-map"></i> Начать путешествие
+                    </button>
+                    <button class="bookmark-btn" id="showTimeline">
+                        <i class="fas fa-history"></i> Хронология жизни
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Основное содержание -->
+        <section class="paper-section" id="about">
+            <h2 class="section-title">Гений русской литературы</h2>
+            
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <p><span class="quote-mark">"</span>Фёдор Михайлович Достоевский — не просто писатель, а <span class="highlight">философ человеческой души</span>, исследователь самых тёмных и светлых её глубин. Его творчество — это исповедь всего человечества, отражение вечной борьбы добра и зла в сердце каждого из нас.</p>
+                    
+                    <p>Родившись в Москве в 1821 году в семье врача, Достоевский с ранних лет столкнулся с противоречиями русской жизни. <span class="highlight">Инженерное образование</span> не помешало ему посвятить себя литературе, ставшей для него не профессией, а <span class="highlight">смыслом существования</span>.</p>
+                    
+                    <p>Пережив инсценировку казни и сибирскую каторгу, писатель обрёл уникальный духовный опыт, который стал основой его философии. Его романы — не просто художественные произведения, а <span class="highlight">лаборатории человеческой психики</span>, где испытываются идеи, верования и нравственные принципы.</p>
+                </div>
+                
+                <div class="manuscript-display">
+                    <div class="manuscript-header">
+                        <div class="manuscript-title">
+                            <i class="fas fa-pen-nib"></i> Рукопись: "Дневник писателя"
+                        </div>
+                        <div class="manuscript-icons">
+                            <i class="fas fa-copy" title="Скопировать"></i>
+                            <i class="fas fa-bookmark" title="Закладка"></i>
+                            <i class="fas fa-expand-alt" title="Развернуть"></i>
+                        </div>
+                    </div>
+                    <div class="manuscript-content">
+                        <div class="manuscript-line" data-line="1">Главная мысль моя всегда была и есть та,</div>
+                        <div class="manuscript-line" data-line="2">что если зло неизбежно в человеке,</div>
+                        <div class="manuscript-line" data-line="3">то отсюда вовсе не следует,</div>
+                        <div class="manuscript-line" data-line="4">что оно нормально и должно быть принято.</div>
+                        <div class="manuscript-line" data-line="5">Напротив, тем необходимее становится борьба.</div>
+                        <div class="manuscript-line" data-line="6"> </div>
+                        <div class="manuscript-line" data-line="7">Человек есть тайна. Её надо разгадать,</div>
+                        <div class="manuscript-line" data-line="8">и ежели будешь её разгадывать всю жизнь,</div>
+                        <div class="manuscript-line" data-line="9">то не говори, что потерял время;</div>
+                        <div class="manuscript-line" data-line="10">я занимаюсь этой тайной, ибо хочу быть человеком.</div>
+                        <div class="manuscript-line" data-line="11"> </div>
+                        <div class="manuscript-line" data-line="12">Страдание есть единственная причина сознания.</div>
+                        <div class="manuscript-line" data-line="13">Я это хоть и сказал прежде, но повторяю теперь,</div>
+                        <div class="manuscript-line" data-line="14">что сознание, по-моему, есть величайшее несчастье</div>
+                        <div class="manuscript-line" data-line="15">для человека, но в то же время и величайшее богатство.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Великие романы -->
+        <section class="paper-section" id="novels">
+            <h2 class="section-title">Великие романы</h2>
+            
+            <div class="novels-grid">
+                <div class="novel-card">
+                    <div class="novel-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Преступление и наказание</h3>
+                    <p>Глубокое исследование психологии преступления, морали и искупления. История Родиона Раскольникова, студента, совершившего убийство для проверки своей теории о "праве сильной личности".</p>
+                    <div class="novel-stats">
+                        <span>Год: 1866</span>
+                        <span>Страниц: 672</span>
+                        <span>Герои: 47</span>
+                    </div>
+                </div>
+                
+                <div class="novel-card">
+                    <div class="novel-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Идиот</h3>
+                    <p>Попытка изобразить "положительно прекрасного человека" в лице князя Мышкина. Трагическая история о том, как чистота и доброта становятся непосильным бременем в жестоком мире.</p>
+                    <div class="novel-stats">
+                        <span>Год: 1869</span>
+                        <span>Страниц: 640</span>
+                        <span>Герои: 52</span>
+                    </div>
+                </div>
+                
+                <div class="novel-card">
+                    <div class="novel-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Братья Карамазовы</h3>
+                    <p>Вершина творчества Достоевского. Философская драма о вере, сомнении, свободе и моральной ответственности. История трёх братьев и их отца, охватывающая вечные вопросы бытия.</p>
+                    <div class="novel-stats">
+                        <span>Год: 1880</span>
+                        <span>Страниц: 824</span>
+                        <span>Герои: 68</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Хронология жизни -->
+        <section class="paper-section" id="timeline">
+            <h2 class="section-title">Хронология жизни и творчества</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1821</div>
+                    <div class="timeline-content">
+                        <h4>Рождение гения</h4>
+                        <p>Родился 11 ноября в Москве в семье штаб-лекаря Михаила Андреевича Достоевского. Второй из семи детей.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1846</div>
+                    <div class="timeline-content">
+                        <h4>Литературный дебют</h4>
+                        <p>Публикация первого романа "Бедные люди", восторженно принятого критиками. Виссарион Белинский называет его "новым Гоголем".</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1849</div>
+                    <div class="timeline-content">
+                        <h4>Арест и казнь</h4>
+                        <p>Арестован по делу петрашевцев. Приговорён к смертной казни, которая в последний момент была заменена на 4 года каторги.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1866</div>
+                    <div class="timeline-content">
+                        <h4>Преступление и наказание</h4>
+                        <p>Публикация одного из величайших романов мировой литературы. Начало "великого пятикнижия".</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1880</div>
+                    <div class="timeline-content">
+                        <h4>Речь о Пушкине</h4>
+                        <p>Произнёс знаменитую речь на открытии памятника Пушкину в Москве, ставшую событием культурной жизни России.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1881</div>
+                    <div class="timeline-content">
+                        <h4>Уход из жизни</h4>
+                        <p>Скончался 9 февраля в Санкт-Петербурге от эмфиземы лёгких. Похоронен на Тихвинском кладбище Александро-Невской лавры.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Философские концепции -->
+        <section class="paper-section" id="philosophy">
+            <h2 class="section-title">Философские концепции</h2>
+            
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <h4><i class="fas fa-brain"></i> Психологизм</h4>
+                    <p>Достоевский считается одним из основателей психологического романа. Его герои — не типы, а живые люди с глубокой внутренней жизнью, противоречиями и сложными мотивациями.</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <h4><i class="fas fa-cross"></i> Религиозный экзистенциализм</h4>
+                    <p>Писатель исследовал вопросы веры и безверия, свободы и ответственности. Его герои постоянно задаются вопросом: "Если Бога нет, то всё дозволено?"</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <h4><i class="fas fa-balance-scale"></i> Диалектика добра и зла</h4>
+                    <p>Достоевский показывал, что добро и зло сосуществуют в каждом человеке. Его герои часто совершают преступления, чтобы затем через страдание прийти к очищению.</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <h4><i class="fas fa-heart"></i> "Русская идея"</h4>
+                    <p>Писатель верил в особую миссию России и русского народа — способность к "всечеловечности", умению понять и принять другие культуры, сохраняя свою идентичность.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Интерактивная лаборатория -->
+        <section class="interactive-lab" id="lab">
+            <h3>Литературная лаборатория</h3>
+            <p>Исследуйте мир Достоевского через интерактивные элементы. Генерируйте цитаты, отслеживайте статистику и погружайтесь в философские размышления.</p>
+            
+            <div class="quote-generator">
+                <div class="generated-quote" id="generatedQuote">
+                    Нажмите кнопку, чтобы получить случайную цитату из произведений Достоевского...
+                </div>
+                
+                <button id="generateQuote" class="btn">
+                    <i class="fas fa-quote-left"></i> Получить цитату
+                </button>
+                
+                <div class="stats-display">
+                    <div class="stat-box">
+                        <div class="stat-value" id="quoteCount">0</div>
+                        <div class="stat-label">Цитат создано</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="novelCount">5</div>
+                        <div class="stat-label">Романов изучено</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="readingTime">0</div>
+                        <div class="stat-label">Минут чтения</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="deepThoughts">0</div>
+                        <div class="stat-label">Глубоких мыслей</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Концептуальные темы -->
+            <div style="margin-top: 50px;">
+                <p style="margin-bottom: 20px; font-size: 1.2rem; color: var(--primary-color);">Исследуйте ключевые темы:</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="bookmark-btn theme-btn" data-theme="suffering">
+                        <i class="fas fa-torah"></i> Страдание
+                    </button>
+                    <button class="bookmark-btn theme-btn" data-theme="redemption">
+                        <i class="fas fa-dove"></i> Искупление
+                    </button>
+                    <button class="bookmark-btn theme-btn" data-theme="faith">
+                        <i class="fas fa-church"></i> Вера
+                    </button>
+                    <button class="bookmark-btn theme-btn" data-theme="freedom">
+                        <i class="fas fa-dove"></i> Свобода
+                    </button>
+                </div>
+                <div id="themeContent" style="margin-top: 30px; padding: 20px; background: rgba(139, 69, 19, 0.05); border-radius: 5px; min-height: 100px;"></div>
+            </div>
+        </section>
+        
+        <!-- Контакты и наследие -->
+        <section class="contact-section">
+            <h2>Наследие великого мыслителя</h2>
+            <p>Творчество Достоевского продолжает вдохновлять философов, писателей и мыслителей по всему миру. Его идеи остаются актуальными и в XXI веке, заставляя нас задуматься о вечных вопросах человеческого существования.
+            </p>
+            <a href="#about" class="contact-btn">Начать изучение</a>
+            
+            <div style="margin-top: 60px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">11</div>
+                    <div style="color: var(--ink-gray);">Романов написано</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">59</div>
+                    <div style="color: var(--ink-gray);">Лет жизни</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">170+</div>
+                    <div style="color: var(--ink-gray);">Экранизаций</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Old Standard TT', serif;">∞</div>
+                    <div style="color: var(--ink-gray);">Мыслей пробуждено</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Подвал -->
+        <footer>
+            <div class="social-links">
+                <a href="#" class="social-link" title="Музей Достоевского">
+                    <i class="fas fa-landmark"></i>
+                </a>
+                <a href="#" class="social-link" title="Библиотека">
+                    <i class="fas fa-book"></i>
+                </a>
+                <a href="#" class="social-link" title="Исследования">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="#" class="social-link" title="Архив">
+                    <i class="fas fa-archive"></i>
+                </a>
+                <a href="#" class="social-link" title="Философия">
+                    <i class="fas fa-brain"></i>
+                </a>
+                <a href="#" class="social-link" title="Литература">
+                    <i class="fas fa-pen-fancy"></i>
+                </a>
+            </div>
+            <p>Вся страница создана в стиле литературного исследования с элементами интерактивности</p>
+            <p>Дизайн вдохновлён атмосферой XIX века и глубиной мысли великого писателя</p>
+            <p class="copyright">&copy; <span class="year">2026</span> | Исследование творчества Ф.М. Достоевского. Все цитаты принадлежат автору.</p>
+        </footer>
+    </div>
+
+    <!-- Кнопка прокрутки наверх -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Основные элементы
+        const typedTextElement = document.getElementById('typedText');
+        const cursorElement = document.getElementById('cursor');
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const floatingLetters = document.getElementById('floatingLetters');
+        const readingModeBtn = document.getElementById('readingMode');
+        const scrollTopBtn = document.getElementById('scrollTop');
+        const quotesModal = document.getElementById('quotesModal');
+        const modalClose = document.getElementById('modalClose');
+        const showQuotesBtn = document.getElementById('showQuotes');
+        const exploreNovelsBtn = document.getElementById('exploreNovels');
+        const startJourneyBtn = document.getElementById('startJourney');
+        const showTimelineBtn = document.getElementById('showTimeline');
+        const generateQuoteBtn = document.getElementById('generateQuote');
+        const generatedQuote = document.getElementById('generatedQuote');
+        const quoteCountElement = document.getElementById('quoteCount');
+        const readingTimeElement = document.getElementById('readingTime');
+        const deepThoughtsElement = document.getElementById('deepThoughts');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const themeContent = document.getElementById('themeContent');
+        const manuscriptIcons = document.querySelectorAll('.manuscript-icons i');
+        const quotesSelector = document.querySelectorAll('.quotes-selector button');
+        const quotesContainer = document.getElementById('quotesContainer');
+        
+        // Переменные состояния
+        let quoteCount = 0;
+        let readingTime = 0;
+        let deepThoughts = 0;
+        let isReadingMode = false;
+        let startTime = Date.now();
+        
+        // Цитаты Достоевского
+        const dostoevskyQuotes = [
+            "Свобода не в том, чтобы не сдерживать себя, а в том, чтобы владеть собой.",
+            "Человек есть тайна. Её надо разгадать, и ежели будешь её разгадывать всю жизнь, то не говори, что потерял время; я занимаюсь этой тайной, ибо хочу быть человеком.",
+            "Сострадание есть высочайшая форма человеческого существования.",
+            "Красота спасёт мир.",
+            "Если Бога нет, то всё дозволено.",
+            "Страдание есть единственная причина сознания.",
+            "Любить человека — значит видеть его таким, каким его задумал Бог.",
+            "Надо любить жизнь больше, чем смысл жизни.",
+            "Чем умнее человек, тем более он замечает оригинальность в людях. Для заурядных — все люди на одно лицо.",
+            "Истинная любовь распознаётся по деяниям, а не по словам."
+        ];
+        
+        // Цитаты по романам
+        const novelQuotes = {
+            crime: [
+                "Я не тебе поклонился, я всему страданию человеческому поклонился.",
+                "Страдание и боль всегда обязательны для широкого сознания и глубокого сердца.",
+                "Разве я старушонку убил? Я себя убил!"
+            ],
+            idiot: [
+                "Сострадание есть главнейший и, может быть, единственный закон бытия всего человечества.",
+                "Красота — это страшная и ужасная вещь!",
+                "Я ведь только оттого и несчастен, что не смею быть счастливым."
+            ],
+            brothers: [
+                "Если ты направишься к цели и станешь дорогою останавливаться, чтобы швырять камнями во всякую лающую на тебя собаку, то никогда не дойдёшь до цели.",
+                "Любите всё создание Божие, и целое, и каждую песчинку. Каждый листик, каждый луч Божий любите.",
+                "Никто не сможет осудить, если не любил."
+            ],
+            demons: [
+                "Человеку, кроме счастья, так же точно и совершенно во столько же раз необходимо и несчастье.",
+                "Русский атеист — это прежде всего верующий человек.",
+                "Если хотите возвысить человека, унижайте его."
+            ]
+        };
+        
+        // Тексты для печатающего эффекта
+        const texts = [
+            "Гений, прорвавшийся в самые глубины человеческой души",
+            "Писатель, ставший философом, философ, оставшийся писателем",
+            "Исследователь самых тёмных и светлых уголков человеческого сердца",
+            "Пророк русской литературы, голос которого звучит сквозь века"
+        ];
+        
+        let currentTextIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let isTypingPaused = false;
+        
+        // Функция печатающего текста
+        function typeWriter() {
+            if (isTypingPaused) return;
+            
+            const currentText = texts[currentTextIndex];
+            
+            if (!isDeleting && currentCharIndex < currentText.length) {
+                typedTextElement.textContent += currentText.charAt(currentCharIndex);
+                currentCharIndex++;
+                setTimeout(typeWriter, 70);
+            } else if (isDeleting && currentCharIndex > 0) {
+                typedTextElement.textContent = currentText.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                setTimeout(typeWriter, 40);
+            } else if (!isDeleting && currentCharIndex === currentText.length) {
+                isTypingPaused = true;
+                setTimeout(() => {
+                    isTypingPaused = false;
+                    isDeleting = true;
+                    setTimeout(typeWriter, 2000);
+                }, 3000);
+            } else if (isDeleting && currentCharIndex === 0) {
+                isDeleting = false;
+                currentTextIndex = (currentTextIndex + 1) % texts.length;
+                setTimeout(typeWriter, 500);
+            }
+        }
+        
+        // Создание летающих букв
+        function createFloatingLetters() {
+            const letters = 'ДОСТОЕВСКИЙФМ';
+            const letterCount = 20;
+            
+            for (let i = 0; i < letterCount; i++) {
+                const letter = document.createElement('div');
+                letter.classList.add('floating-letter');
+                letter.textContent = letters[Math.floor(Math.random() * letters.length)];
+                
+                // Случайная позиция и задержка
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = 15 + Math.random() * 20;
+                const fontSize = 1.5 + Math.random() * 1;
+                
+                letter.style.left = `${left}%`;
+                letter.style.animationDelay = `${delay}s`;
+                letter.style.animationDuration = `${duration}s`;
+                letter.style.fontSize = `${fontSize}rem`;
+                
+                floatingLetters.appendChild(letter);
+            }
+        }
+        
+        // Обновление времени чтения
+        function updateReadingTime() {
+            const now = Date.now();
+            readingTime = Math.floor((now - startTime) / 60000);
+            readingTimeElement.textContent = readingTime;
+        }
+        
+        // Генерация случайной цитаты
+        function generateRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * dostoevskyQuotes.length);
+            generatedQuote.textContent = `"${dostoevskyQuotes[randomIndex]}"`;
+            generatedQuote.style.opacity = '0';
+            
+            // Анимация появления
+            setTimeout(() => {
+                generatedQuote.style.transition = 'opacity 0.5s';
+                generatedQuote.style.opacity = '1';
+            }, 10);
+            
+            // Обновление статистики
+            quoteCount++;
+            quoteCountElement.textContent = quoteCount;
+            
+            // Случайное добавление "глубоких мыслей"
+            if (Math.random() > 0.7) {
+                deepThoughts++;
+                deepThoughtsElement.textContent = deepThoughts;
+                
+                // Анимация
+                deepThoughtsElement.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    deepThoughtsElement.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }
+        
+        // Показ информации по темам
+        function showThemeContent(theme) {
+            const themes = {
+                suffering: {
+                    title: "Философия страдания",
+                    content: "Для Достоевского страдание — не наказание, а путь к просветлению. Через страдание герои очищаются, обретают самосознание и приближаются к истине. 'Страдание есть единственная причина сознания' — ключевая мысль писателя."
+                },
+                redemption: {
+                    title: "Искупление и возрождение",
+                    content: "Путь от преступления к искуплению — центральная тема творчества. Раскольников, Дмитрий Карамазов и другие герои через страдание и раскаяние обретают возможность духовного возрождения."
+                },
+                faith: {
+                    title: "Вера и сомнение",
+                    content: "Достоевский исследовал вечную борьбу веры и безверия. Его герои постоянно задаются вопросом о существовании Бога, а их сомнения становятся отправной точкой для глубоких философских размышлений."
+                },
+                freedom: {
+                    title: "Свобода и ответственность",
+                    content: "Писатель предупреждал об опасности абсолютной свободы без нравственных ограничений. Свобода должна быть связана с ответственностью, иначе она превращается в произвол и разрушение."
+                }
+            };
+            
+            const themeData = themes[theme];
+            if (themeData) {
+                themeContent.innerHTML = `
+                    <h4 style="color: var(--primary-color); margin-bottom: 15px; font-family: 'Playfair Display', serif;">
+                        <i class="fas fa-lightbulb"></i> ${themeData.title}
+                    </h4>
+                    <p style="color: var(--ink-gray); line-height: 1.7;">${themeData.content}</p>
+                `;
+                
+                // Анимация появления
+                themeContent.style.opacity = '0';
+                themeContent.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    themeContent.style.transition = 'opacity 0.5s, transform 0.5s';
+                    themeContent.style.opacity = '1';
+                    themeContent.style.transform = 'translateY(0)';
+                }, 10);
+            }
+        }
+        
+        // Показ цитат по роману
+        function showNovelQuotes(novel) {
+            const quotes = novelQuotes[novel];
+            if (quotes) {
+                quotesContainer.innerHTML = '';
+                
+                quotes.forEach((quote, index) => {
+                    const quoteElement = document.createElement('div');
+                    quoteElement.style.padding = '15px';
+                    quoteElement.style.marginBottom = '15px';
+                    quoteElement.style.background = 'rgba(139, 69, 19, 0.1)';
+                    quoteElement.style.borderRadius = '5px';
+                    quoteElement.style.borderLeft = '3px solid var(--primary-color)';
+                    quoteElement.innerHTML = `
+                        <p style="color: var(--ink-color); font-style: italic; margin-bottom: 10px;">"${quote}"</p>
+                        <small style="color: var(--ink-gray);">Цитата ${index + 1}</small>
+                    `;
+                    
+                    quotesContainer.appendChild(quoteElement);
+                });
+            }
+        }
+        
+        // Переключение режима чтения
+        function toggleReadingMode() {
+            isReadingMode = !isReadingMode;
+            
+            if (isReadingMode) {
+                document.documentElement.style.setProperty('--paper-bg', '#fffaf0');
+                document.documentElement.style.setProperty('--paper-bg-light', '#fffff0');
+                document.documentElement.style.setProperty('--ink-color', '#2c1810');
+                readingModeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                readingModeBtn.style.background = 'var(--primary-color)';
+                readingModeBtn.style.color = 'var(--paper-bg)';
+                
+                // Уведомление
+                showNotification('Ночной режим чтения включен');
+            } else {
+                document.documentElement.style.setProperty('--paper-bg', '#f5e9d8');
+                document.documentElement.style.setProperty('--paper-bg-light', '#fffaf0');
+                document.documentElement.style.setProperty('--ink-color', '#2c1810');
+                readingModeBtn.innerHTML = '<i class="fas fa-book-reader"></i>';
+                readingModeBtn.style.background = 'rgba(26, 15, 10, 0.9)';
+                readingModeBtn.style.color = 'var(--accent-3)';
+                
+                showNotification('Дневной режим включен');
+            }
+        }
+        
+        // Показ уведомления
+        function showNotification(message) {
+            // Удаляем старое уведомление, если есть
+            const oldNotification = document.querySelector('.notification');
+            if (oldNotification) {
+                oldNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '100px';
+            notification.style.right = '30px';
+            notification.style.background = 'var(--primary-color)';
+            notification.style.color = 'var(--paper-bg)';
+            notification.style.padding = '15px 25px';
+            notification.style.borderRadius = '5px';
+            notification.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
+            notification.style.zIndex = '2000';
+            notification.style.transform = 'translateX(100px)';
+            notification.style.opacity = '0';
+            notification.style.transition = 'transform 0.5s, opacity 0.5s';
+            
+            document.body.appendChild(notification);
+            
+            // Анимация появления
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+                notification.style.opacity = '1';
+            }, 10);
+            
+            // Автоматическое скрытие
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100px)';
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 500);
+            }, 3000);
+        }
+        
+        // Прокрутка к секции
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Закрытие мобильного меню
+                if (window.innerWidth <= 992) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            }
+        }
+        
+        // Инициализация навигации
+        function initNavigation() {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            });
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Закрытие меню при клике на ссылку
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('href').substring(1);
+                    scrollToSection(sectionId);
+                });
+            });
+        }
+        
+        // Инициализация прокрутки наверх
+        function initScrollTop() {
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Инициализация модального окна
+        function initModal() {
+            showQuotesBtn.addEventListener('click', () => {
+                quotesModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            modalClose.addEventListener('click', () => {
+                quotesModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Закрытие при клике вне окна
+            quotesModal.addEventListener('click', (e) => {
+                if (e.target === quotesModal) {
+                    quotesModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+        
+        // Инициализация иконок рукописи
+        function initManuscriptIcons() {
+            manuscriptIcons.forEach((icon, index) => {
+                icon.addEventListener('click', () => {
+                    if (index === 0) {
+                        // Копирование
+                        const manuscriptText = document.querySelector('.manuscript-content').textContent;
+                        navigator.clipboard.writeText(manuscriptText).then(() => {
+                            const originalIcon = icon.className;
+                            icon.className = 'fas fa-check';
+                            setTimeout(() => {
+                                icon.className = originalIcon;
+                            }, 2000);
+                            showNotification('Текст скопирован');
+                        });
+                    } else if (index === 1) {
+                        // Закладка
+                        showNotification('Закладка добавлена');
+                    } else if (index === 2) {
+                        // Развернуть
+                        document.querySelector('.manuscript-content').classList.toggle('expanded');
+                        if (document.querySelector('.manuscript-content.expanded')) {
+                            document.querySelector('.manuscript-content').style.maxHeight = 'none';
+                            showNotification('Режим полноэкранного чтения');
+                        } else {
+                            document.querySelector('.manuscript-content').style.maxHeight = '400px';
+                            showNotification('Обычный режим');
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Инициализация анимаций при прокрутке
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.novel-card, .philosophy-card, .timeline-content').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(40px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        }
+        
+        // Основная инициализация
+        function init() {
+            createFloatingLetters();
+            typeWriter();
+            initNavigation();
+            initScrollTop();
+            initModal();
+            initManuscriptIcons();
+            initScrollAnimations();
+            
+            // Обновление времени каждую минуту
+            setInterval(updateReadingTime, 60000);
+            
+            // Установка текущего года
+            const currentYear = new Date().getFullYear();
+            document.querySelector('.year').textContent = currentYear;
+            
+            // Обработчики событий
+            readingModeBtn.addEventListener('click', toggleReadingMode);
+            generateQuoteBtn.addEventListener('click', generateRandomQuote);
+            
+            exploreNovelsBtn.addEventListener('click', () => scrollToSection('novels'));
+            startJourneyBtn.addEventListener('click', () => scrollToSection('about'));
+            showTimelineBtn.addEventListener('click', () => scrollToSection('timeline'));
+            
+            // Обработчики тем
+            themeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const theme = btn.getAttribute('data-theme');
+                    showThemeContent(theme);
+                    deepThoughts++;
+                    deepThoughtsElement.textContent = deepThoughts;
+                });
+            });
+            
+            // Обработчики цитат по романам
+            quotesSelector.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const novel = btn.getAttribute('data-quote');
+                    showNovelQuotes(novel);
+                });
+            });
+            
+            // Добавление стилей для уведомлений и расширенного режима
+            const style = document.createElement('style');
+            style.textContent = `
+                .manuscript-content.expanded {
+                    position: fixed;
+                    top: 50px;
+                    left: 50px;
+                    right: 50px;
+                    bottom: 50px;
+                    z-index: 2000;
+                    max-height: none !important;
+                    background: var(--paper-bg);
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+                }
+                
+                .theme-btn.active {
+                    background: var(--primary-color);
+                    color: var(--paper-bg);
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Начальные уведомления
+            setTimeout(() => {
+                showNotification('Добро пожаловать в мир Достоевского');
+            }, 1000);
+            
+            setTimeout(() => {
+                showNotification('Исследуйте философские концепции через интерактивные элементы');
+            }, 4000);
+        }
+        
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
