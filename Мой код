@@ -2579,9 +2579,7 @@
                     <button class="bookmark-btn" id="showTimeline">
                         <i class="fas fa-hourglass-half"></i> Хронология жизни
                     </button>
-                    <button class="bookmark-btn" id="readOnline">
-                        <i class="fas fa-globe"></i> Читать онлайн
-                    </button>
+                  
                 </div>
             </div>
         </header>
